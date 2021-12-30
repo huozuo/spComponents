@@ -7,10 +7,8 @@ version: v0
 location: spComponents
 '''
 
-
-from spComponents import matrixTools
-from spComponents import atom2nodes
-from spComponents import getFileName
+from spComponents.sparseRepresentation import atom2nodes
+from spComponents.tools import getFileName, matrixTools
 import numpy as np
 
 

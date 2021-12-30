@@ -8,10 +8,7 @@ version:v1
 location: spComponents
 '''
 
-
-
-import numpy as np
-from spComponents.expansion import *
+from spComponents.MBF.expansion import *
 
 
 def error(residuMatrix, columnVector,rowVector):

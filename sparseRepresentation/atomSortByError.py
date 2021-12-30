@@ -6,9 +6,8 @@ func: 按照原子生成给sample矩阵带来的误差下降进行排序
 version：v2
 '''
 
-from spComponents import matrixTools
-from spComponents import atom2nodes
-from spComponents import getFileName
+from spComponents.sparseRepresentation import atom2nodes
+from spComponents.tools import getFileName, matrixTools
 import numpy as np
 
 
@@ -77,7 +76,7 @@ def calcAtomError(sampleMatrix,dictMatrix,coefMatrix,atom2dict,atomError):
             # coef = np.concatenate((coef, coefVec), axis=0)
 
         # 这里有可能是有负数的，不过也无所谓，
-        curError = matrixTools.absError(sampleMatrix,dict,coef)
+        curError = matrixTools.absError(sampleMatrix, dict, coef)
 
         errRate = 1 - curError/originalSum
 

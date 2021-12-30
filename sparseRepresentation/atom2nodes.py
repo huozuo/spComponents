@@ -10,8 +10,7 @@ location: spComponents
 from numpy import *
 import networkx as nx
 import numpy as np
-from spComponents import getFileName
-
+from spComponents.tools import getFileName
 
 
 class Atom2Nodes():
@@ -37,8 +36,8 @@ class Atom2Nodes():
         获得指定目录下的原子个数
         :return:
         '''
-        fileList = getFileName.get_filename("data\\"+self.name+"\\")
-        cnt = getFileName.calcFileNums(fileList,'Atom_\w+.gexf')
+        fileList = getFileName.get_filename("data\\" + self.name + "\\")
+        cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexf')
         return cnt
 
     def getAtoms(self):

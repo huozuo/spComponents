@@ -4,10 +4,9 @@ author: pmy
 function: 运行布尔矩阵分解
 '''
 
-from spComponents.MEBF import MEBF
-import numpy as np
-from spComponents.getFileName import get_filename
-from spComponents.matrixTools import *
+from spComponents.MBF.MEBF import MEBF
+from spComponents.tools.getFileName import get_filename
+from spComponents.tools.matrixTools import *
 
 
 def MBF(matrix,Thres=0.95,DIM=150):

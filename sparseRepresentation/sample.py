@@ -11,8 +11,8 @@ version: v1
 import networkx as nx
 import numpy as np
 import os
-from spComponents.getFileName import get_filename
-from spComponents.transformNetwork import transformNetwork
+from spComponents.tools.getFileName import get_filename
+from spComponents.sparseRepresentation.transformNetwork import transformNetwork
 
 
 def get_average_degree_of_network(G):

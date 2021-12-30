@@ -8,11 +8,9 @@ version: v3
 '''
 import numpy as np
 from sklearn import linear_model
-import scipy
 import os
-from matplotlib import pyplot as plt
 
-from spComponents import matrixTools
+from spComponents.tools import matrixTools
 
 
 def get_filename(base_filename):
