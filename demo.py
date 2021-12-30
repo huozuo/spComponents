@@ -20,13 +20,13 @@ from spComponents import runMBF
 
 if __name__=="__main__":
     # 挨个运行，每次单独运行一个，防止中间有方法出错
-    sample.sampleAll(size=20) # 采样
+    sample.run(size=20) # 采样
     # ksvd.runKsvd(dictNum=200) # ksvd进行矩阵分解
-    runMBF.runAll()
+    runMBF.run()
 
     atomGen.run() # 生成原子，重构网络
-    atom2nodes.runAtom2nodesAll() # 生成原子与真实节点的映射关系
-    atomSortByError.runAll() # 按照误差进行原子的排序  beta 测试中
+    atom2nodes.run() # 生成原子与真实节点的映射关系
+    atomSortByError.run() # 按照误差进行原子的排序  beta 测试中
 
 
 

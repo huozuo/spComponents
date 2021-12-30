@@ -9,11 +9,8 @@ location: spComponents
 '''
 from numpy import *
 import networkx as nx
-from networkx import isomorphism
-import os
 import numpy as np
 from spComponents import getFileName
-import time
 
 
 

@@ -7,7 +7,6 @@ version: v3
 
 from numpy import *
 import networkx as nx
-from networkx import isomorphism
 import os
 import numpy as np
 

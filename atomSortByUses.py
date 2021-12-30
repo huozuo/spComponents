@@ -12,7 +12,7 @@ from spComponents import matrixTools
 from spComponents import atom2nodes
 from spComponents import getFileName
 import numpy as np
-from dalib.util.utils_pmy.IO_utils import IO_utils
+
 
 def run():
     '''
@@ -28,13 +28,21 @@ def run():
         print(runOne(file))
     print("done")
 
+def save_tupleList_txt(data,filename):
+    with open(filename,'a',encoding='utf-8') as f:
+        for key1,key2 in data:
+            f.write(str(int(key1)))
+            f.write(" , ")
+            f.write(str(int(key2)))
+            f.write('\n')
+    f.close()
+
 def runOne(name):
     '''
     主运行函数
     :param name:
     :return:
     '''
-    ioUtil = IO_utils()
     # 加载矩阵
     sampleMatrix = matrixTools.loadSample(name) # 获取采样矩阵
     dictMatrix = matrixTools.loadDict(name) #获取字典
@@ -49,7 +57,7 @@ def runOne(name):
     atomUses = sorted(atomUses.items(),key=lambda item:item[1],reverse=True)
     # 存储结果
     storePath = "data//"+name+"//原子使用次数.txt"
-    ioUtil.save_tupleList_txt(atomUses,storePath)
+    save_tupleList_txt(atomUses,storePath)
     print("done")
     # res = [atom for atom, rate in atomUses]  # 将误差率下降删除，只返回顺序
     return atomUses
