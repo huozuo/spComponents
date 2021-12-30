@@ -3,25 +3,15 @@ date: 21.12.08
 author: pmy
 func: 用于运行spComponents下的跑py
       主要用于非作者使用指导
-
-note：运行demo文件尽量不要放在spComponents在同一目录下，便于维护
-
-      需要创建的数据路径为 ： data/原始网络们/
-      该路径中放入gexf文件
 '''
 
-from spComponents.sparseRepresentation import sample, atom2nodes, atomGen, atomSortByError
-from spComponents.MBF import runMBF
+import spComponents
 
 if __name__=="__main__":
-    # 挨个运行，每次单独运行一个，防止中间有方法出错
-    sample.run(size=20) # 采样
-    # ksvd.runKsvd(dictNum=200) # ksvd进行矩阵分解
-    runMBF.run()
-
-    atomGen.run() # 生成原子，重构网络
-    atom2nodes.run() # 生成原子与真实节点的映射关系
-    atomSortByError.run() # 按照误差进行原子的排序  beta 测试中
+    spComponents.sparseRepresentation.sample.run(10)
+    spComponents.MBF.runMBF.run()
+    spComponents.sparseRepresentation.atomGen.run()
+    spComponents.sparseRepresentation.atom2nodes.run()
 
 
 
