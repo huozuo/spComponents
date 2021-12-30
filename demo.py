@@ -6,7 +6,7 @@ func: 用于运行spComponents下的跑py
 
 note：运行demo文件尽量不要放在spComponents在同一目录下，便于维护
 
-      需要创建的数据路径为 ： data/原始网络/
+      需要创建的数据路径为 ： data/原始网络们/
       该路径中放入gexf文件
 '''
 

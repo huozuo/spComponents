@@ -11,7 +11,7 @@ location: spComponents
 
 
 import numpy as np
-from expansion import *
+from spComponents.expansion import *
 
 
 def error(residuMatrix, columnVector,rowVector):

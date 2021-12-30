@@ -24,7 +24,7 @@ def MBF(matrix,Thres=0.95,DIM=150):
     error(matrix,dict,coef)
     return dict,coef
 
-def run(name,Thres):
+def runOne(name,Thres):
     '''
     输入name，阈值，运行MBF方法
     存储MBF返回的字典矩阵和稀疏码矩阵
@@ -39,16 +39,16 @@ def run(name,Thres):
 
     print("##########分解完毕##########")
 
-def runAll(Thres=0.95):
+def run(Thres=0.95):
     '''
     runAll
     :param filename:
     :return:
     '''
     for name in get_filename("data\\"):
-        if name =="原始网络":continue
+        if name =="原始网络们":continue
         print("########" + name + "########")
-        run(name, Thres)
+        runOne(name, Thres)
     print("done")
 
 

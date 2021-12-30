@@ -227,7 +227,7 @@ def run():
     network_director_lsit = get_filename(origin_filename)
     count = 0
     for each in network_director_lsit:
-        if each == "原始网络":
+        if each == "原始网络们":
             continue
         filename = origin_filename + each  # 每个文件夹的文件
         print(each)

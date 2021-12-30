@@ -46,7 +46,7 @@ def get_filename(base_filename):
     '''
     list = os.listdir(base_filename)
     try:
-        list.remove("原始网络")
+        list.remove("原始网络们")
     except:
         pass
     return list

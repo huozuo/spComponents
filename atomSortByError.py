@@ -12,7 +12,7 @@ from spComponents import getFileName
 import numpy as np
 
 
-def runAll():
+def run():
     '''
     运行所有
     :return:
@@ -21,13 +21,13 @@ def runAll():
     # atom2nodes.getAllnodes()
     fileList = getFileName.get_filename("data//")
     for file in fileList:
-        if file == "原始网络": continue
+        if file == "原始网络们": continue
         print(file)
-        print(run(file))
+        print(runOne(file))
     print("done")
 
 
-def run(name):
+def runOne(name):
     '''
     主运行函数
     :param name:

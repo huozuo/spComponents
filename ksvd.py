@@ -125,7 +125,7 @@ class KSVD(object):
         self.sparsecode = linear_model.orthogonal_mp(self.dictionary, y, n_nonzero_coefs=self.n_nonzero_coefs) #最后求解一次稀疏编码
         return self.dictionary, self.sparsecode
 
-def runKsvd(dictNum=200):
+def run(dictNum=200):
     '''
     运行ksvd
     :param dictNum: 指定的最大字典列向量数 默认为200，可以修改
@@ -133,7 +133,7 @@ def runKsvd(dictNum=200):
     '''
     fileList = get_filename("data\\")
     for name in fileList:
-        if name =="原始网络":continue
+        if name =="原始网络们":continue
         print("######" + name + "######")
         # name = "ca-AstroPh2"
         filename = "data\\" + name + "\\Sample_" + name + ".txt"

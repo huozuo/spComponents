@@ -285,12 +285,12 @@ class Atom2Nodes():
         f.close()
         print("存储完毕")
 
-def runAtom2nodesAll():
+def run():
     # atom2nodes = Atom2Nodes(name)
     # atom2nodes.getAllnodes()
     fileList = getFileName.get_filename("data//")
     for file in fileList:
-        if file == "原始网络": continue
+        if file == "原始网络们": continue
         print(file)
         Atom2Nodes(file).getAllnodes()
     print("done")
@@ -298,7 +298,7 @@ def runAtom2nodesAll():
 if __name__=="__main__":
     name = "roadNet-CA2"
     print(name)
-    test = Atom2Nodes1(name)
+    test = Atom2Nodes(name)
     test.getAllnodes()
 
 

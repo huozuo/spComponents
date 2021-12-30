@@ -163,13 +163,13 @@ def sample(graph_path, name, subnet_size):
     f2.close()
     print("行数",ks)
 
-def sampleAll(size=20):
+def run(size=20):
     '''
-    采样data/原始网络/ 目录下所有
+    采样data/原始网络们/ 目录下所有
     :param size: 采样网络大小
     :return:
     '''
-    base_filename = "data\\原始网络\\"
+    base_filename = "data\\原始网络们\\"
     file_list = get_filename(base_filename)
     count = 0
     for each in file_list:
@@ -183,7 +183,7 @@ def sampleAll(size=20):
 
 
 if __name__ == '__main__':
-    base_filename = "data\\原始网络\\"
+    base_filename = "data\\原始网络们\\"
     file_list = get_filename(base_filename)
     count = 0
     for each in file_list:
