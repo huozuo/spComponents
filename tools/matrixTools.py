@@ -72,25 +72,35 @@ def absError(sampleMatrix,dict,coef):
     errorEng = np.sum(error_matrix)
     return errorEng
 
+def calcSum(matrix):
+    '''
+    统计异质（同质）矩阵的非零个数
+    :param matrix:
+    :return:
+    '''
+    matrixCopy = matrix.copy()
+    matrixCopy[matrixCopy!=0] = 1
+    return np.sum(matrixCopy)
+
 def error(sampleMatrix,dict,coef):
     '''
     计算并打印误差信息
     误差百分比
-    :param matrix: 初始矩阵
+    :param sampleMatrix: 初始矩阵
     :param dict: 分解得到的字典矩阵
     :param coef: 分解得到的稀疏码矩阵
     :return: None
     '''
-    sampleMatrix[sampleMatrix > 0] = 1
-    originalEng = np.sum(sampleMatrix)
+    # sampleMatrix[sampleMatrix > 0] = 1
+    originalEng = calcSum(sampleMatrix)
     print("原本矩阵的能量：" + str(originalEng))
     reconstruction_matrix = np.dot(dict, coef)
-    reconstruction_matrix[reconstruction_matrix > 1] = 1
+    # reconstruction_matrix[reconstruction_matrix > 1] = 1
     error_matrix = sampleMatrix - reconstruction_matrix
     error_matrix[error_matrix != 0] = 1
-    errorEng = np.sum(error_matrix)
+    errorEng = calcSum(error_matrix)
     err = errorEng / originalEng
-    print("最终误差是：" + str(errorEng))
+    print("误差是：" + str(errorEng))
     print("误差率为：" + str(err))
     return err
 
