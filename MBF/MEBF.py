@@ -42,7 +42,7 @@ def MEBF(Thres,MAT,DIM=200,COVER=0.995):
     MAT_B = np.empty([np.shape(MAT)[0],0]) #论文中的A*
     MAT_C = np.empty([0, np.shape(MAT)[1]])#给定shape，返回一个多元数组 然后进行修改添加？
     e = np.sum(M1)  # 本轮矩阵的1个数
-    print("初始误差为："+str(e)) #
+    # print("初始误差为："+str(e)) #
 
     # 循环条件：字典列向量数达到DIM，或者1的个数足够少（剩余1的个数达到（1-cover）*初始1的个数）
     while np.sum(M1)>(1-COVER)*SUM and min(MAT_B.shape)<DIM:#COVER值只在这里出现
