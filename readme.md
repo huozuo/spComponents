@@ -2,16 +2,18 @@
 
 ## 介绍
 复杂网络稀疏表征相关tools，不断更新中
+文件路径为win平台习惯，如linux请自行修改
 
 ## 如何使用
-
+- 可用代码 置于 $/sparseRepresentation/$ 路径下
 - 仿照demo，调用各个py
 - 复杂网络稀疏表征过程： 采样 - 矩阵分解 - 原子生成 - 网络恢复 - 寻找原子对应的实际节点
                                                        原子排序
 - 所有的非工具py，都可以直接 xxx.run(args) 运行
 
 ## 具体情况
-### sample.py 
+### sparseRepresentation
+#### sample.py 
 - aim: 采样
     - input: gexf文件
         - 在运行目录下创建 $data/原始网络\$，将gexf文件放入
@@ -22,7 +24,7 @@
     - args: 
         - size 采样大小
     - attention
-### ksvd.py 
+#### ksvd.py 
 - aim: 用于矩阵分解，浮点数矩阵分解
     - input: Sample_xxx.txt
     - output: 
@@ -34,7 +36,7 @@
         - 或者说，python版本ksvd分解出来，少量的原子就完成了网络的组成
         - 所以不建议使用该版本，建议使用matlab版ksvd
 
-### atomGen.py
+#### atomGen.py
 - aim: 生成原子，恢复网络
     - input: dic_Sample.txt 
     - output: 
@@ -42,7 +44,7 @@
         - Network_recover.gexf 字典与稀疏码恢复出的网络
     - args:
 
-### atom2nodes.py 
+#### atom2nodes.py 
 - aim: 找到 原子在实际网络中的对应节点，节点按序一一对应
 - input: Atom_x.gexf, dict_Sample.txt, coef_Sample.txt, indexs_xxx.txt
   - output: atom2nodes.txt
@@ -59,17 +61,17 @@
         - 0出现位置不固定，不一定出现，其原因在于，采样时生成自我中心网络，可能中心点的度<采样大小，为了保证自我中心网络规模一致便于矩阵运算，于是使用0作为虚拟节点进行填充；同时，由于使用ksvd浮点数分解进行使用，所以原子可能比实际结构多了一些边与点，所以存在index中实际节点、边 不存在，而原子中点与边存在的情况
 - args:
 - attention: 
-### calcAtomMatch.py
+#### calcAtomMatch.py
 - aim: 
 - input: 
 - output:
 - args:
-### atomSortByError.py
+#### atomSortByError.py
 - aim: 
 - input: 
 - output:
 - args:
-### atomSortByUses.py
+#### atomSortByUses.py
 - aim: 
 - input: 
 - output:
