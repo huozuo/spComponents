@@ -1,8 +1,8 @@
 # spComponents
 
 ## 介绍
-复杂网络稀疏表征相关tools，不断更新中
-文件路径为win平台习惯，如linux请自行修改
+- 复杂网络稀疏表征相关tools，不断更新中
+- 文件路径为win平台习惯，如linux请自行修改
 
 ## 如何使用
 - 可用代码 置于 $/sparseRepresentation/$ 路径下
