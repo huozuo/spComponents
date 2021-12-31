@@ -76,7 +76,7 @@
   - coef_Sample.txt
 - output:
   - 直接print排序信息 （TODO 保存在txt中）
-  - ![image-20211231144148889](C:/Users/pan/AppData/Roaming/Typora/typora-user-images/image-20211231144149195.png)
+  - ![image-20211231145038615](https://gitee.com/huozuo/typoraImage/raw/master/img/image-20211231145038615.png)
   - 50%意为，实现误差覆盖50%的原子序号，即从1号原子到72号原子一共完成50%的误差覆盖
 - args:
 - attention:
