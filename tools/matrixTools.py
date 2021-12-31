@@ -81,6 +81,7 @@ def error(sampleMatrix,dict,coef):
     :param coef: 分解得到的稀疏码矩阵
     :return: None
     '''
+    sampleMatrix[sampleMatrix > 0] = 1
     originalEng = np.sum(sampleMatrix)
     print("原本矩阵的能量：" + str(originalEng))
     reconstruction_matrix = np.dot(dict, coef)
