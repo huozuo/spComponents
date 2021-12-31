@@ -62,17 +62,31 @@
 - args:
 - attention: 
 #### calcAtomMatch.py
-- aim: 
+- aim: 计算原子在网络中的真实匹配率
 - input: 
 - output:
 - args:
 #### atomSortByError.py
 - aim: 
+  - 对原子进行排序
+  - 排序依据为，每个原子对于矩阵分解过程中，导致误差下降了多少
 - input: 
+  - Sample_xxx.txt
+  - dic_Sample.txt
+  - coef_Sample.txt
 - output:
+  - 直接print排序信息 （TODO 保存在txt中）
+  - ![image-20211231144148889](C:/Users/pan/AppData/Roaming/Typora/typora-user-images/image-20211231144149195.png)
+  - 50%意为，实现误差覆盖50%的原子序号，即从1号原子到72号原子一共完成50%的误差覆盖
 - args:
+- attention:
+  - 排序的依据是每个原子单独的误差下降
+  - 两个原子的误差下降并不是x+y，而是最大值是x+y，因为两个原子的误差下降会有些许的叠加，即$|x|or|y|<=x+y<=|x|+|y|$
+  - 这里的排序只能当做参考，并不绝对可靠
 #### atomSortByUses.py
 - aim: 
+  - 对原子进行排序
+  - 排序依据为 原子的使用次数 （即稀疏码的行和）
 - input: 
 - output:
 - args:
