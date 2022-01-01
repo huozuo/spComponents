@@ -11,6 +11,23 @@ location: spComponents
 '''
 import numpy as np
 
+def loadIndexs(name):
+    '''
+    读取一般性 Index文件
+    :param name: 网络名
+    :return: indexs 列表
+    '''
+    file = open("data//"+name+"//Index_"+name+".txt","r")
+    indexs = []
+    for line in file.readlines():
+        if line == "": continue
+        line = line.strip("\n").split(",")
+        line = line[:len(line)-1]
+        line = [int(each) for each in line]
+        indexs.append(line)
+    return indexs
+
+
 def loadSample(name):
     '''
     输入位于本层目录下data里的文件名,返回矩阵
