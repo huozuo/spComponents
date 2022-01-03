@@ -39,10 +39,36 @@ def loadSample(name):
     return matrix
 
 def loadDict(name):
+    '''
+    同质字典
+    :param name:
+    :return:
+    '''
     return np.loadtxt("data\\"+name+"\\dic_Sample.txt")
 
 def loadCoef(name):
+    '''
+    同质稀疏码
+    :param name:
+    :return:
+    '''
     return np.loadtxt("data\\" + name + "\\coef_Sample.txt")
+
+def loadDictH(name):
+    '''
+    异质字典
+    :param name:
+    :return:
+    '''
+    return np.loadtxt("data\\"+name+"\\dic_Sampleh.txt")
+
+def loadCoefH(name):
+    '''
+    异质稀疏码
+    :param name:
+    :return:
+    '''
+    return np.loadtxt("data\\" + name + "\\coef_Sampleh.txt")
 
 def errBetweenMatrix(aMatrix,bMatrix):
     '''
