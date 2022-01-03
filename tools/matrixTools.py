@@ -10,96 +10,9 @@ version: v2
 location: spComponents
 '''
 import numpy as np
+import spComponents
 
-################load#################
-def loadIndexs(name):
-    '''
-    读取一般性 Index文件
-    :param name: 网络名
-    :return: indexs 列表
-    '''
-    file = open("data//"+name+"//Index_"+name+".txt","r")
-    indexs = []
-    for line in file.readlines():
-        if line == "": continue
-        line = line.strip("\n").split(",")
-        line = line[:len(line)-1]
-        line = [int(each) for each in line]
-        indexs.append(line)
-    return indexs
-
-
-def loadSample(name):
-    '''
-    输入位于本层目录下data里的文件名,返回矩阵
-    :param name:
-    :return:
-    '''
-    matrix = np.loadtxt("data\\"+name+"\\sample_"+name+".txt")
-    matrix = matrix.T # 进行转置，看需求
-    return matrix
-
-
-def loadDict(name):
-    '''
-    同质字典
-    :param name:
-    :return:
-    '''
-    return np.loadtxt("data\\"+name+"\\dic_Sample.txt")
-
-
-def loadCoef(name):
-    '''
-    同质稀疏码
-    :param name:
-    :return:
-    '''
-    return np.loadtxt("data\\" + name + "\\coef_Sample.txt")
-
-def loadDictH(name):
-    '''
-    异质字典
-    :param name:
-    :return:
-    '''
-    return np.loadtxt("data\\"+name+"\\dic_Sampleh.txt")
-
-def loadCoefH(name):
-    '''
-    异质稀疏码
-    :param name:
-    :return:
-    '''
-    return np.loadtxt("data\\" + name + "\\coef_Sampleh.txt")
-
-
-def loadSampleRec(name):
-    '''
-    采样恢复矩阵
-    :param name:
-    :return:
-    '''
-    matrix = np.loadtxt("data\\" + name + "\\Sample_Recovery.txt")
-    matrix = matrix.T  # 进行转置，看需求
-    return matrix
-
-
-def save(name,dict,coef,add=""):
-    '''
-    将传入dict矩阵和coef矩阵按照name来进行存储
-    存储的路径在data下
-    :param name:
-    :param dict:
-    :param coef:
-    :return:
-    '''
-    dic_name = "data\\"+name+"\\dic_Sample"+add+".txt"
-    coef_name = "data\\"+name+"\\coef_Sample"+add+".txt"
-    np.savetxt(dic_name, dict, fmt="%d")
-    np.savetxt(coef_name, coef, fmt="%d")
-
-
+# 同质
 def errBetweenMatrix(aMatrix,bMatrix):
     '''
     计算两矩阵差值比例
@@ -147,9 +60,6 @@ def absError(sampleMatrix,dict,coef):
     return errorEng
 
 
-
-
-
 def calcSum(matrix):
     '''
     统计异质（同质）矩阵的非零个数
@@ -183,8 +93,6 @@ def error(sampleMatrix,dict,coef):
     return err
 
 
-
-
 def errorCalc(name):
     '''
     输入name，直接计算，这样方便
@@ -193,8 +101,8 @@ def errorCalc(name):
     :param name: 文件名
     :return:
     '''
-    sample = loadSample(name)
-    sampleRec = loadSampleRec(name)
+    sample = spComponents.tools.loadTools.loadSample(name)
+    sampleRec = spComponents.tools.loadTools.loadSampleRec(name)
     originalEng = np.sum(sample)
     print("原本矩阵的能量：" + str(originalEng))
     error_matrix = sample - sampleRec
@@ -204,6 +112,50 @@ def errorCalc(name):
     print("最终误差是：" + str(errorEng))
     print("误差率为：" + str(err))
     return err
+
+
+############## 异质 结尾带H####################
+def matrixsErrH(matrixA,matrixB):
+    '''
+    异质矩阵误差
+    以matrixA为基准
+    默认都是整数
+    :param matrixA: 建议放置采样矩阵
+    :param matrixB:
+    :return:
+    '''
+    preErr = np.sum(matrixA)
+
+    errMatrix = matrixA - matrixB
+    errMatrix[errMatrix!=0] = 1
+    curErr = np.sum(errMatrix)
+
+    return curErr/preErr
+
+def nameErrH(name):
+    '''
+    根据name 计算异质网络表征恢复误差
+    :param name:
+    :return:
+    '''
+    sampleMatrix = spComponents.tools.loadTools.loadSample(name)
+    recMatrix = spComponents.tools.loadTools.loadSampleRec(name)
+
+    return matrixsErrH(sampleMatrix,recMatrix)
+
+
+def dcErrH(dict,coef,sampleMatrix):
+    '''
+    根据 dict，coef，计算误差
+    :param dict:
+    :param coef:
+    :param sampleMatrix:
+    :return:
+    '''
+    recMatrix = spComponents.sparseRepresentation.recover.run(dict,coef)
+    return matrixsErrH(sampleMatrix,recMatrix)
+
+
 
 
 
