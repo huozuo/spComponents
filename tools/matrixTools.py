@@ -38,6 +38,7 @@ def loadSample(name):
     matrix = matrix.T # 进行转置，看需求
     return matrix
 
+
 def loadDict(name):
     '''
     同质字典
@@ -45,6 +46,7 @@ def loadDict(name):
     :return:
     '''
     return np.loadtxt("data\\"+name+"\\dic_Sample.txt")
+
 
 def loadCoef(name):
     '''
@@ -70,6 +72,18 @@ def loadCoefH(name):
     '''
     return np.loadtxt("data\\" + name + "\\coef_Sampleh.txt")
 
+
+def loadSampleRec(name):
+    '''
+    采样恢复矩阵
+    :param name:
+    :return:
+    '''
+    matrix = np.loadtxt("data\\" + name + "\\Sample_Recovery.txt")
+    matrix = matrix.T  # 进行转置，看需求
+    return matrix
+
+
 def errBetweenMatrix(aMatrix,bMatrix):
     '''
     计算两矩阵差值比例
@@ -83,8 +97,8 @@ def errBetweenMatrix(aMatrix,bMatrix):
     res = aMatrix - bMatrix
     res = np.maximum(res,-res) # 该方法是在两个矩阵中取元素的最大值，一正一负，那么必然是绝对值
     curE = np.sum(res)
-
     return curE / orginalE
+
 
 def matrixSum(matrix):
     '''
@@ -93,6 +107,7 @@ def matrixSum(matrix):
     :return:
     '''
     return np.sum(matrix)
+
 
 def absError(sampleMatrix,dict,coef):
     '''
@@ -114,6 +129,22 @@ def absError(sampleMatrix,dict,coef):
     error_matrix[error_matrix != 0] = 1
     errorEng = np.sum(error_matrix)
     return errorEng
+
+
+def save(name,dict,coef,add=""):
+    '''
+    将传入dict矩阵和coef矩阵按照name来进行存储
+    存储的路径在data下
+    :param name:
+    :param dict:
+    :param coef:
+    :return:
+    '''
+    dic_name = "data\\"+name+"\\dic_Sample"+add+".txt"
+    coef_name = "data\\"+name+"\\coef_Sample"+add+".txt"
+    np.savetxt(dic_name, dict, fmt="%d")
+    np.savetxt(coef_name, coef, fmt="%d")
+
 
 def calcSum(matrix):
     '''
@@ -147,15 +178,7 @@ def error(sampleMatrix,dict,coef):
     print("误差率为：" + str(err))
     return err
 
-def loadSampleRec(name):
-    '''
-    采样恢复矩阵
-    :param name:
-    :return:
-    '''
-    matrix = np.loadtxt("data\\" + name + "\\Sample_Recovery.txt")
-    matrix = matrix.T  # 进行转置，看需求
-    return matrix
+
 
 
 def errorCalc(name):
@@ -180,16 +203,3 @@ def errorCalc(name):
 
 
 
-def save(name,dict,coef,add=""):
-    '''
-    将传入dict矩阵和coef矩阵按照name来进行存储
-    存储的路径在data下
-    :param name:
-    :param dict:
-    :param coef:
-    :return:
-    '''
-    dic_name = "data\\"+name+"\\dic_Sample"+add+".txt"
-    coef_name = "data\\"+name+"\\coef_Sample"+add+".txt"
-    np.savetxt(dic_name, dict, fmt="%d")
-    np.savetxt(coef_name, coef, fmt="%d")
