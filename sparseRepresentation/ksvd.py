@@ -10,7 +10,7 @@ import numpy as np
 from sklearn import linear_model
 import os
 
-from spComponents.tools import matrixTools
+from spComponents.tools import errorTools
 
 
 def get_filename(base_filename):

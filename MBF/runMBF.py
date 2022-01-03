@@ -6,7 +6,7 @@ function: 运行布尔矩阵分解
 
 from spComponents.MBF.MEBF import MEBF
 from spComponents.tools.getFileName import get_filename
-from spComponents.tools.matrixTools import *
+from spComponents.tools.errorTools import *
 
 
 def MBF(matrix,Thres=0.95,DIM=150):

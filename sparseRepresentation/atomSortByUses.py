@@ -8,7 +8,7 @@ location: spComponents
 '''
 
 from spComponents.sparseRepresentation import atom2nodes
-from spComponents.tools import getFileName, matrixTools
+from spComponents.tools import getFileName, errorTools
 import numpy as np
 
 
