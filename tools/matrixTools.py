@@ -152,7 +152,7 @@ def dcErrH(dict,coef,sampleMatrix):
     :param sampleMatrix:
     :return:
     '''
-    recMatrix = spComponents.sparseRepresentation.recover.run(dict,coef)
+    recMatrix = spComponents.sparseRepresentation.recover.genRecMatrix(dict,coef)
     return matrixsErrH(sampleMatrix,recMatrix)
 
 
