@@ -11,6 +11,7 @@ location: spComponents
 '''
 import numpy as np
 
+################load#################
 def loadIndexs(name):
     '''
     读取一般性 Index文件
@@ -84,6 +85,21 @@ def loadSampleRec(name):
     return matrix
 
 
+def save(name,dict,coef,add=""):
+    '''
+    将传入dict矩阵和coef矩阵按照name来进行存储
+    存储的路径在data下
+    :param name:
+    :param dict:
+    :param coef:
+    :return:
+    '''
+    dic_name = "data\\"+name+"\\dic_Sample"+add+".txt"
+    coef_name = "data\\"+name+"\\coef_Sample"+add+".txt"
+    np.savetxt(dic_name, dict, fmt="%d")
+    np.savetxt(coef_name, coef, fmt="%d")
+
+
 def errBetweenMatrix(aMatrix,bMatrix):
     '''
     计算两矩阵差值比例
@@ -131,19 +147,7 @@ def absError(sampleMatrix,dict,coef):
     return errorEng
 
 
-def save(name,dict,coef,add=""):
-    '''
-    将传入dict矩阵和coef矩阵按照name来进行存储
-    存储的路径在data下
-    :param name:
-    :param dict:
-    :param coef:
-    :return:
-    '''
-    dic_name = "data\\"+name+"\\dic_Sample"+add+".txt"
-    coef_name = "data\\"+name+"\\coef_Sample"+add+".txt"
-    np.savetxt(dic_name, dict, fmt="%d")
-    np.savetxt(coef_name, coef, fmt="%d")
+
 
 
 def calcSum(matrix):
