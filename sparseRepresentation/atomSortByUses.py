@@ -10,6 +10,7 @@ location: spComponents
 from spComponents.sparseRepresentation import atom2nodes
 from spComponents.tools import getFileName, errorTools
 import numpy as np
+import spComponents
 
 
 def run():
@@ -42,9 +43,9 @@ def runOne(name):
     :return:
     '''
     # 加载矩阵
-    sampleMatrix = matrixTools.loadSample(name) # 获取采样矩阵
-    dictMatrix = matrixTools.loadDict(name) #获取字典
-    coefMatrix = matrixTools.loadCoef(name) #获取稀疏码
+    sampleMatrix = spComponents.tools.loadTools.loadSample(name) # 获取采样矩阵
+    dictMatrix = spComponents.tools.loadTools.loadDict(name) #获取字典
+    coefMatrix = spComponents.tools.loadTools.loadCoef(name) #获取稀疏码
     #获得原子和字典的映射
     atom2nodesTool = atom2nodes.Atom2Nodes(name)
     atom2dict = atom2nodesTool.atom2dict # 原子与字典的映射关系

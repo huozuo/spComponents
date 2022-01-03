@@ -8,6 +8,7 @@ version：v2
 
 from spComponents.sparseRepresentation import atom2nodes
 from spComponents.tools import getFileName, errorTools
+import spComponents
 import numpy as np
 
 
@@ -33,9 +34,9 @@ def runOne(name):
     :return:
     '''
     # 加载矩阵
-    sampleMatrix = matrixTools.loadSample(name) # 获取采样矩阵
-    dictMatrix = matrixTools.loadDict(name) #获取字典
-    coefMatrix = matrixTools.loadCoef(name) #获取稀疏码
+    sampleMatrix = spComponents.tools.loadTools.loadSample(name) # 获取采样矩阵
+    dictMatrix = spComponents.tools.loadTools.loadDict(name) #获取字典
+    coefMatrix = spComponents.tools.loadTools.loadCoef(name) #获取稀疏码
     #获得原子和字典的映射
     atom2nodesTool = atom2nodes.Atom2Nodes(name)
     atom2dict = atom2nodesTool.atom2dict # 原子与字典的映射关系
@@ -76,7 +77,7 @@ def calcAtomError(sampleMatrix,dictMatrix,coefMatrix,atom2dict,atomError):
             # coef = np.concatenate((coef, coefVec), axis=0)
 
         # 这里有可能是有负数的，不过也无所谓，
-        curError = matrixTools.absError(sampleMatrix, dict, coef)
+        curError = spComponents.tools.loadTools.absError(sampleMatrix, dict, coef)
 
         errRate = 1 - curError/originalSum
 
@@ -103,7 +104,7 @@ def getSpecialAtom(sampleMatrix,dictMatrix,coefMatrix,atom2dict,atomError):
             coefVec = coefMatrix[dictIndex, :]
             dict = np.concatenate((dict, dictVec.reshape((np.shape(dictVec)[0], 1))), axis=1)
             coef = np.concatenate((coef, coefVec.reshape((1, np.shape(coefVec)[0]))), axis=0)
-        curError = matrixTools.absError(sampleMatrix, dict, coef)
+        curError = spComponents.tools.loadTools.absError(sampleMatrix, dict, coef)
         errRate = curError/originalSum
         # 只打印一次 用1,2,4来进行划分，使得只被打印一次
         if flag<4 and errRate <=0.1:

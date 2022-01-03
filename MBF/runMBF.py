@@ -7,6 +7,8 @@ function: 运行布尔矩阵分解
 from spComponents.MBF.MEBF import MEBF
 from spComponents.tools.getFileName import get_filename
 from spComponents.tools.errorTools import *
+from spComponents.tools.loadTools import *
+from spComponents.tools.saveTools import *
 
 
 def MBF(matrix,Thres=0.95,DIM=150):
@@ -64,6 +66,6 @@ if __name__=="__main__":
     # run(name,0.92)
     # name = "roadNet-CA2"
     # run(name,0.95)
-    runAll()
+    run()
 
 

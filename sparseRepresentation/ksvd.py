@@ -9,7 +9,6 @@ version: v3
 import numpy as np
 from sklearn import linear_model
 import os
-
 from spComponents.tools import errorTools
 
 
@@ -83,7 +82,7 @@ class KSVD(object):
             d[:, i] = 0   #将字典d的第i列全部设为0
             r = (y - np.dot(d, x))[:, index]  #计算误差矩阵（为了保证编码矩阵稀疏，只选择编码中非0的索引）
             # e = np.linalg.norm(y - np.dot(d, x))
-            e = matrixTools.absError(y, d, x)
+            e = errorTools.absError(y, d, x)
             print("误差是：" + str(e))  # for test
             u, s, v = np.linalg.svd(r, full_matrices=False)  #用svd的方法，来更新第i列字典和第i行的稀疏矩阵 这里会不收敛，用scipy来试一试 删去full_matrix试试
             # u,s,v = scipy.linalg.svd(r)
