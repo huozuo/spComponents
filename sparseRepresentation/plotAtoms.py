@@ -43,7 +43,7 @@ def runOne(name,plotArrange=241):
     for i in range(len(atoms)):
         seq = i%total
         plotAtom(atoms[i],plotArrange+seq)
-        if seq == total-1:
+        if seq == total-1 or seq==len(atoms)-1:
             f = plt.gcf()
             f.set_size_inches(18, 10) # 图像的尺寸
             plt.savefig(basePath+"atomFig_"+str(int(i//total))+".png",dpi=100)
