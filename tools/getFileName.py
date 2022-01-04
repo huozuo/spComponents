@@ -27,13 +27,13 @@ def getSpecPaths(basePath,name):
 
 def specFilesCnt(basePath,name):
     '''
-    获取 basePath目录下，name_xx.txt的文件数目
+    获取 basePath目录下，name开头的文件数目
     :param basePath:
     :param name:
     :return:
     '''
     fileList = get_filename(basePath)
-    cnt = calcFileNums(fileList, name + '_\w+.txt')
+    cnt = calcFileNums(fileList, name)
 
     return cnt
 
