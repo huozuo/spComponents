@@ -90,3 +90,10 @@
 - input: 
 - output:
 - args:
+
+#### plotAtoms.py
+- aim: 
+  - 对原子进行绘制，输出png
+- input: Atom_xxx.gexf
+- output: atomFig_x.png
+- args:
