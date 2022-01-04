@@ -12,6 +12,7 @@ if __name__=="__main__":
     spComponents.MBF.runMBF.run()
     spComponents.sparseRepresentation.atomGen.run()
     spComponents.sparseRepresentation.atom2nodes.run()
+    spComponents.sparseRepresentation.plotAtoms.run() # 绘制原子图像
 
 
 
