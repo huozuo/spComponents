@@ -11,7 +11,7 @@ version: v1
 import networkx as nx
 import numpy as np
 import os
-from spComponents.tools.getFileName import get_filename
+from spComponents.tools.getFileName import showDir
 from spComponents.sparseRepresentation.transformNetwork import transformNetwork
 
 
@@ -170,7 +170,7 @@ def run(size=20):
     :return:
     '''
     base_filename = "data\\原始网络们\\"
-    file_list = get_filename(base_filename)
+    file_list = showDir(base_filename)
     count = 0
     for each in file_list:
         filename = each
@@ -184,7 +184,7 @@ def run(size=20):
 
 if __name__ == '__main__':
     base_filename = "data\\原始网络们\\"
-    file_list = get_filename(base_filename)
+    file_list = showDir(base_filename)
     count = 0
     for each in file_list:
         filename = each

@@ -5,7 +5,7 @@ function: 运行布尔矩阵分解
 '''
 
 from spComponents.MBF.MEBF import MEBF
-from spComponents.tools.getFileName import get_filename
+from spComponents.tools.getFileName import showDir
 from spComponents.tools.errorTools import *
 from spComponents.tools.loadTools import *
 from spComponents.tools.saveTools import *
@@ -46,7 +46,7 @@ def run(Thres=0.95):
     :param filename:
     :return:
     '''
-    for name in get_filename("data\\"):
+    for name in showDir("data\\"):
         if name =="原始网络们":continue
         print("########" + name + "########")
         runOne(name, Thres)

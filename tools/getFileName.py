@@ -16,13 +16,8 @@ def getSpecPaths(basePath,name):
     :param name:
     :return:
     '''
-    num = specFilesCnt(basePath, name)
-    paths = []
-    for i in range(num):
-        path = basePath + name + "_" + str(i + 1) + ".txt"
-        paths.append(path)
-
-    return paths
+    fileList = dir(basePath)
+    return filterPath(fileList,name)
 
 
 def specFilesCnt(basePath,name):
@@ -32,19 +27,19 @@ def specFilesCnt(basePath,name):
     :param name:
     :return:
     '''
-    fileList = get_filename(basePath)
+    fileList = dir(basePath)
     cnt = calcFileNums(fileList, name)
 
     return cnt
 
 
-def get_filename(base_filename):
+def showDir(basePath):
     '''
     获取当前目录下的所有文件
-    :param base_filename:
+    :param basePath:
     :return:
     '''
-    list = os.listdir(base_filename)
+    list = os.listdir(basePath)
     try:
         list.remove("原始网络们")
     except:
@@ -58,10 +53,17 @@ def calcFileNums(ss,pattern):
     :param regx: 正则式
     :return:
     '''
-    cnt = 0
+    return len(filterPath(ss,pattern))
+
+def filterPath(ss,pattern):
+    '''
+    从str列表中找出符合pattern的str
+    :param ss:
+    :param pattern:
+    :return:
+    '''
+    res = []
     for s in ss:
         if re.match(pattern,s) != None:
-            cnt += 1
-
-    return cnt
-
+            res.append(s)
+    return res
