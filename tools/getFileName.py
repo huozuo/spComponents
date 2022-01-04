@@ -16,7 +16,7 @@ def getSpecPaths(basePath,name):
     :param name:
     :return:
     '''
-    num = specFilesCnt(basePath, "dict")
+    num = specFilesCnt(basePath, name)
     paths = []
     for i in range(num):
         path = basePath + name + "_" + str(i + 1) + ".txt"
