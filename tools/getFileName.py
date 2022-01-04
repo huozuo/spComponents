@@ -7,7 +7,7 @@ version: v2
 '''
 import os
 import re
-
+import mySort
 
 def getSpecPaths(basePath,name):
     '''
@@ -68,4 +68,5 @@ def filterPath(ss,pattern):
     for s in ss:
         if re.match(pattern,s) != None:
             res.append(s)
+    res = mySort.sortStr(res) # 进行排序
     return res
