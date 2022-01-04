@@ -16,8 +16,10 @@ def getSpecPaths(basePath,name):
     :param name:
     :return:
     '''
-    fileList = dir(basePath)
-    return filterPath(fileList,name)
+    fileList = showDir(basePath)
+    paths = filterPath(fileList,name)
+    paths = [basePath+path for path in paths]
+    return paths
 
 
 def specFilesCnt(basePath,name):
