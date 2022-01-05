@@ -20,6 +20,7 @@
                                                        原子排序
                                                        绘制原子图像
 - 所有的非工具py，都可以直接 xxx.run(args) 运行
+- 使用pycharm时，建议将所有目录都 make directory as source root，否则会出现 no module named xxx。（算是pycharm的使用常识了。。）
 
 ## 具体情况
 ### sparseRepresentation
