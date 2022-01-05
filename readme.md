@@ -20,7 +20,11 @@
                                                        原子排序
                                                        绘制原子图像
 - 所有的非工具py，都可以直接 xxx.run(args) 运行
-- 使用pycharm时，建议将所有目录都 make directory as source root，否则会出现 no module named xxx。（算是pycharm的使用常识了。。）
+
+## attention
+- 使用pycharm时，建议将所有目录都 make directory as source root，否则会出现 no module named xxx
+    - 非pycharm无序考虑
+- 
 
 ## 具体情况
 ### sparseRepresentation
@@ -107,4 +111,7 @@
   - 对原子进行绘制，输出png
 - input: Atom_xxx.gexf
 - output: atomFig_x.png
-- args:
+- args: 
+    - 输入一个三位数整数 xy1 
+    - x 为行数，y为列数， 最后一个数必须为1
+    - 每个数，最多不能超过10，超过10，就有歧义，没法识别简写模式

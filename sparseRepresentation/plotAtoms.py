@@ -10,17 +10,17 @@ import networkx as nx
 import spComponents
 from tqdm import tqdm
 
-def run():
+def run(plotArrange=241):
     basePath = "data\\"
     files = spComponents.tools.getFileName.showDir(basePath)
     for file in tqdm(files):
         try:
-            runOne(file)
+            runOne(file,plotArrange)
         except:
             print(file+": 绘制失败")
 
 
-def runOne(name,plotArrange=241):
+def runOne(name,plotArrange):
     '''
     主方法
     :param name:
