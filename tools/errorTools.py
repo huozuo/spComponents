@@ -13,6 +13,18 @@ import numpy as np
 import spComponents
 
 # 同质
+def matrixsErr(aMatrix,bMatrix):
+    '''
+    返回矩阵相差之和 具体数值
+    :param aMatrix:
+    :param bMatrix:
+    :return:
+    '''
+    res = aMatrix - bMatrix
+    res = np.maximum(res, -res)  # 该方法是在两个矩阵中取元素的最大值，一正一负，那么必然是绝对值
+    curE = np.sum(res)
+    return curE
+
 def errBetweenMatrix(aMatrix,bMatrix):
     '''
     计算两矩阵差值比例
@@ -120,6 +132,7 @@ def matrixsErrH(matrixA,matrixB):
     异质矩阵误差
     以matrixA为基准
     默认都是整数
+    百分比
     :param matrixA: 建议放置采样矩阵
     :param matrixB:
     :return:
@@ -131,6 +144,7 @@ def matrixsErrH(matrixA,matrixB):
     curErr = np.sum(errMatrix)
 
     return curErr/preErr
+
 
 def nameErrH(name):
     '''
@@ -154,7 +168,6 @@ def dcErrH(dict,coef,sampleMatrix):
     '''
     recMatrix = spComponents.sparseRepresentation.recover.genRecMatrix(dict,coef)
     return matrixsErrH(sampleMatrix,recMatrix)
-
 
 
 
