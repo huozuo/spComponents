@@ -42,10 +42,8 @@ def showDir(basePath):
     :return:
     '''
     list = os.listdir(basePath)
-    try:
-        list.remove("原始网络们")
-    except:
-        pass
+    if "原始网络们" in list: list.remove("原始网络们")
+    if "原始网络" in list: list.remove("原始网络")
     return list
 
 
