@@ -11,6 +11,11 @@ import spComponents
 from tqdm import tqdm
 
 def run(plotArrange=241):
+    '''
+    画所有图，只调用一次就好了
+    :param plotArrange:
+    :return:
+    '''
     basePath = "data\\"
     files = spComponents.tools.getFileName.showDir(basePath)
     for file in tqdm(files):
