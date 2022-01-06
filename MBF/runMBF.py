@@ -22,7 +22,7 @@ def MBF(matrix,Thres=0.95,DIM=150):
     :return: 字典矩阵，稀疏码矩阵，并打印误差结果
     '''
     dict,coef = MEBF(Thres,matrix,DIM=DIM)
-    error(matrix,dict,coef)
+    # error(matrix,dict,coef)
     return dict,coef
 
 def runOne(name,Thres):

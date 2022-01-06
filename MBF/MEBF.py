@@ -158,7 +158,7 @@ def MEBF(Thres,MAT,DIM=200,COVER=0.995):
 
         # 如果处理之后还等于0， 则直接brek
         if e1==np.sum(M1):
-            print("无法误差下降啦")
+            # print("无法误差下降啦")
             break
         else:#确实更新了，所以这里进行修正矩阵
             M1 = M1 - np.outer(B1_use,B2_use) #减去subMatrix
