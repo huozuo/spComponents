@@ -16,7 +16,7 @@ def run(plotArrange=241):
     :param plotArrange:
     :return:
     '''
-    basePath = "data\\"
+    basePath = "data/"
     files = spComponents.tools.getFileName.showDir(basePath)
     for file in tqdm(files):
         try:
@@ -33,7 +33,7 @@ def runOne(name,plotArrange):
     :return:
     '''
     # 读取目录下的所有Atom_文件数量
-    basePath = "data//"+name+"//"
+    basePath = "data/"+name+"/"
     filePaths = spComponents.tools.getFileName.getSpecPaths(basePath,"Atom")
     if len(filePaths)==0: return
     print("开始绘制："+name)

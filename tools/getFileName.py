@@ -43,7 +43,7 @@ def showDir(basePath):
     '''
     list = os.listdir(basePath)
     if "原始网络们" in list: list.remove("原始网络们")
-    if "原始网络" in list: list.remove("原始网络")
+    if "原始网络们" in list: list.remove("原始网络们")
     return list
 
 

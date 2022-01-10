@@ -104,7 +104,7 @@ def sample(graph_path, name, subnet_size):
     :param subnet_size: 原子最大大小
     :return:
     """
-    store_filename =  "data\\"+ name + "\\"
+    store_filename =  "data/"+ name + "/"
     mkdir(store_filename)
 
     if '.txt' in graph_path:
@@ -118,8 +118,8 @@ def sample(graph_path, name, subnet_size):
     Subnet_Size = subnet_size  # 子图大小
 
     ks = 1
-    f = open(store_filename + "\\Sample_{}.txt".format(name), 'w',encoding='utf-8')  # 每一行都是邻接矩阵（egonetwork）
-    f2 = open(store_filename + "\\Index_{}.txt".format(name), 'w')  # 每一行都是该节点的邻接节点
+    f = open(store_filename + "/Sample_{}.txt".format(name), 'w',encoding='utf-8')  # 每一行都是邻接矩阵（egonetwork）
+    f2 = open(store_filename + "/Index_{}.txt".format(name), 'w')  # 每一行都是该节点的邻接节点
 
     print("点数是：",G.number_of_nodes()) #for test
 
@@ -169,7 +169,7 @@ def run(size=20):
     :param size: 采样网络大小
     :return:
     '''
-    base_filename = "data\\原始网络们\\"
+    base_filename = "data/原始网络们/"
     file_list = showDir(base_filename)
     count = 0
     for each in file_list:
@@ -183,7 +183,7 @@ def run(size=20):
 
 
 if __name__ == '__main__':
-    base_filename = "data\\原始网络们\\"
+    base_filename = "data/原始网络们/"
     file_list = showDir(base_filename)
     count = 0
     for each in file_list:

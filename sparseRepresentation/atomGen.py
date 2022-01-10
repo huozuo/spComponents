@@ -18,13 +18,13 @@ def Atom_Gen(base_name, name,sep = ""):
     :param sep : 默认是""，即为不加，处理同质，可以选填"h"，来处理异质原子生成
     :return: 无返回，直接完成
     '''
-    f = open(base_name + "\\dic_Sample.txt")  # 字典文件的路径
+    f = open(base_name + "/dic_Sample.txt")  # 字典文件的路径
     line = f.readline()
     G = []
 
     # Num_Atom = 200  #字典矩阵的列数 即原子的个数
     # Atom_Len = 20   #字典矩阵的行数的开平方 即原子的size
-    dic_matrix = np.loadtxt(base_name + "\\dic_Sample.txt")
+    dic_matrix = np.loadtxt(base_name + "/dic_Sample.txt")
     Atom_Len = int(sqrt(dic_matrix.shape[0]))
     Num_Atom = dic_matrix.shape[1] #直接覆盖
 
@@ -57,7 +57,7 @@ def Atom_Gen(base_name, name,sep = ""):
         In_F = False
         if Sample_Set == []:
             Sample_Set.append(Sample)
-            nx.write_gexf(Sample, base_name + "\\Atom_" + str(Num_Sample) + ".gexf", encoding='utf-8')  # 书写原子的路径
+            nx.write_gexf(Sample, base_name + "/Atom_" + str(Num_Sample) + ".gexf", encoding='utf-8')  # 书写原子的路径
             Num_Sample = Num_Sample + 1
         # 去同构
         for element in Sample_Set:
@@ -68,7 +68,7 @@ def Atom_Gen(base_name, name,sep = ""):
             #     In_F = True
         if not In_F:
             Sample_Set.append(Sample)
-            nx.write_gexf(Sample, base_name + "\\Atom_" + str(Num_Sample) + ".gexf", encoding='utf-8')
+            nx.write_gexf(Sample, base_name + "/Atom_" + str(Num_Sample) + ".gexf", encoding='utf-8')
             Num_Sample = Num_Sample + 1
 
     print('Number of Atom: ', len(Sample_Set))
@@ -76,7 +76,7 @@ def Atom_Gen(base_name, name,sep = ""):
 
     # =============================Recover_Sample========================================================================#
 
-    f = open(base_name + "\\coef_Sample.txt")  # 读取稀疏码文件
+    f = open(base_name + "/coef_Sample.txt")  # 读取稀疏码文件
     line = f.readline()
     Delta = []
     k = 0
@@ -91,7 +91,7 @@ def Atom_Gen(base_name, name,sep = ""):
         line = f.readline()
     f.close()
 
-    f = open(base_name + "\\dic_Sample.txt")  # 再次打开字典文件
+    f = open(base_name + "/dic_Sample.txt")  # 再次打开字典文件
     line = f.readline()
     Dict = []
     k = 0
@@ -107,7 +107,7 @@ def Atom_Gen(base_name, name,sep = ""):
     f.close()
 
     Network_Set = []
-    f = open(base_name+"\\Sample_" + name + ".txt")  # 读取采样文件
+    f = open(base_name+"/Sample_" + name + ".txt")  # 读取采样文件
     line = f.readline()
     k = 0
     while line != '':
@@ -149,7 +149,7 @@ def Atom_Gen(base_name, name,sep = ""):
             k = k + 1
     print('Number of Coverage：', k)
 
-    f = open(base_name + "\\Sample_Recovery.txt", 'w')
+    f = open(base_name + "/Sample_Recovery.txt", 'w')
     for line in Rec_GT:
         for element in line:
             f.write(str(element))
@@ -159,8 +159,8 @@ def Atom_Gen(base_name, name,sep = ""):
 
     # =============================Recover_Network========================================================================#
 
-    f_S = open(base_name + "\\Sample_Recovery.txt")  # 打开采样恢复文件
-    f_I = open(base_name+"\\Index_" + name + ".txt")  # 打开index文件
+    f_S = open(base_name + "/Sample_Recovery.txt")  # 打开采样恢复文件
+    f_I = open(base_name+"/Index_" + name + ".txt")  # 打开index文件
 
     Sample = f_S.readline()
     Index = f_I.readline()
@@ -185,7 +185,7 @@ def Atom_Gen(base_name, name,sep = ""):
         Sample = f_S.readline()
         Index = f_I.readline()
 
-    nx.write_gexf(G, base_name + "\\Network_recover.gexf", encoding='utf-8')  # 写入恢复网络
+    nx.write_gexf(G, base_name + "/Network_recover.gexf", encoding='utf-8')  # 写入恢复网络
     f_S.close()
     f_I.close()
 
@@ -195,7 +195,7 @@ def Atom_Gen(base_name, name,sep = ""):
     Average_Deg = []
 
     for i in range(1, Atoms_Num + 1):
-        G = nx.read_gexf(base_name + '\\Atom_' + str(i) + '.gexf')  # 读取所有的原子网络
+        G = nx.read_gexf(base_name + '/Atom_' + str(i) + '.gexf')  # 读取所有的原子网络
         node_num = len(G.nodes())
         edge_num = len(G.edges())
         Node_Num.append(node_num)
@@ -203,7 +203,7 @@ def Atom_Gen(base_name, name,sep = ""):
         if node_num != 0:
             Average_Deg.append(edge_num * 2 / node_num)
 
-    f = open(base_name + "\\Atom_Statistics.txt", 'w')  # 打开 atom_statistics
+    f = open(base_name + "/Atom_Statistics.txt", 'w')  # 打开 atom_statistics
     f.write(str(Node_Num))  # 每个原子的节点数
     f.write(str(Edge_Num))  # 每个原子的边数
     f.write('\n')
@@ -222,7 +222,7 @@ def get_filename(base_filename):
     return list
 
 def run():
-    origin_filename = "data\\"
+    origin_filename = "data/"
     network_director_lsit = get_filename(origin_filename)
     count = 0
     for each in network_director_lsit:

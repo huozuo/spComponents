@@ -46,7 +46,7 @@ def run(Thres=0.95):
     :param filename:
     :return:
     '''
-    for name in showDir("data\\"):
+    for name in showDir("data/"):
         if name =="原始网络们":continue
         print("########" + name + "########")
         runOne(name, Thres)

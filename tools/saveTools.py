@@ -15,7 +15,7 @@ def save(name,dict,coef,add=""):
     :param coef:
     :return:
     '''
-    dic_name = "data\\"+name+"\\dic_Sample"+add+".txt"
-    coef_name = "data\\"+name+"\\coef_Sample"+add+".txt"
+    dic_name = "data/"+name+"/dic_Sample"+add+".txt"
+    coef_name = "data/"+name+"/coef_Sample"+add+".txt"
     np.savetxt(dic_name, dict, fmt="%d")
     np.savetxt(coef_name, coef, fmt="%d")

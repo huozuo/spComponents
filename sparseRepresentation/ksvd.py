@@ -128,12 +128,12 @@ def run(dictNum=200):
     :param dictNum: 指定的最大字典列向量数 默认为200，可以修改
     :return:
     '''
-    fileList = get_filename("data\\")
+    fileList = get_filename("data/")
     for name in fileList:
         if name =="原始网络们":continue
         print("######" + name + "######")
         # name = "ca-AstroPh2"
-        filename = "data\\" + name + "\\Sample_" + name + ".txt"
+        filename = "data/" + name + "/Sample_" + name + ".txt"
         y = np.loadtxt(filename)
         y = y.T
         print(y.shape)
@@ -141,8 +141,8 @@ def run(dictNum=200):
         print("初始化完毕")
         dictionary, sparsecode = ksvd.fit(y)
         print("训练完毕")
-        dic_name = "data\\" + name + "\\dic_Sample.txt"
-        coef_name = "data\\" + name + "\\coef_Sample.txt"
+        dic_name = "data/" + name + "/dic_Sample.txt"
+        coef_name = "data/" + name + "/coef_Sample.txt"
         np.savetxt(dic_name, dictionary, fmt="%4f")
         np.savetxt(coef_name, sparsecode, fmt="%4f")
         print("存储完毕")
@@ -157,7 +157,7 @@ if __name__ == '__main__':
     for name in fileList:
         print("######"+name+"######")
         # name = "ca-AstroPh2"
-        filename = "data\\"+name+"\\Sample_"+name+".txt"
+        filename = "data/"+name+"/Sample_"+name+".txt"
         y = np.loadtxt(filename)
         y = y.T
         print(y.shape)

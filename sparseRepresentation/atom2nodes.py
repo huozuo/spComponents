@@ -22,8 +22,8 @@ class Atom2Nodes():
         :param name:
         '''
         # 读取字典矩阵，稀疏码矩阵
-        self.dict = self.getMatrix("data\\" + name + "\\dic_Sample.txt")
-        self.coef = self.getMatrix("data\\" + name + "\\coef_Sample.txt")
+        self.dict = self.getMatrix("data/" + name + "/dic_Sample.txt")
+        self.coef = self.getMatrix("data/" + name + "/coef_Sample.txt")
         self.index = self.getIndex(name)
         self.atom2dict = self.getAtom2dict(name) # {原子序号：字典向量序号}
         self.name = name
@@ -36,7 +36,7 @@ class Atom2Nodes():
         获得指定目录下的原子个数
         :return:
         '''
-        fileList = getFileName.get_filename("data\\" + self.name + "\\")
+        fileList = getFileName.showDir("data/" + self.name + "/")
         cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexf')
         return cnt
 
@@ -47,7 +47,7 @@ class Atom2Nodes():
         '''
         atoms = []
         for i in range(1,self.atomNum+1):
-            atomName = "data\\" + self.name + "\\Atom_" + str(i) + ".gexf"
+            atomName = "data/" + self.name + "/Atom_" + str(i) + ".gexf"
             atoms.append(nx.read_gexf(atomName))
         return atoms
 
@@ -60,7 +60,7 @@ class Atom2Nodes():
         :param name:
         :return:
         '''
-        filename = "data\\" + name + "\\Index_" + name + ".txt"
+        filename = "data/" + name + "/Index_" + name + ".txt"
         index = []
         with open(filename, 'r', encoding='utf-8') as f:
             for line in f.readlines():
@@ -77,7 +77,7 @@ class Atom2Nodes():
         :param name:
         :return:
         '''
-        f = open("data\\" +name+ "\\dic_Sample.txt")  # 字典文件的路径
+        f = open("data/" +name+ "/dic_Sample.txt")  # 字典文件的路径
         line = f.readline()
         G = []  # 存储字典的值
         # Num_Atom = 200  #字典矩阵的列数 即原子的个数
@@ -270,7 +270,7 @@ class Atom2Nodes():
         :return:
         '''
         print("开始存储")
-        fileName = "data\\" + self.name + "\\atom2nodes.txt"
+        fileName = "data/" + self.name + "/atom2nodes.txt"
         f = open(fileName, 'w', encoding="UTF-8")
         for key in data.keys():
             f.write("原子: " + str(key) + "\n")
@@ -284,7 +284,7 @@ class Atom2Nodes():
 def run():
     # atom2nodes = Atom2Nodes(name)
     # atom2nodes.getAllnodes()
-    fileList = getFileName.get_filename("data//")
+    fileList = getFileName.showDir("data/")
     for file in fileList:
         if file == "原始网络们": continue
         print(file)

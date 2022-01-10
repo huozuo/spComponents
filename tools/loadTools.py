@@ -13,7 +13,7 @@ def loadIndexs(name):
     :param name: 网络名
     :return: indexs 列表
     '''
-    file = open("data//"+name+"//Index_"+name+".txt","r")
+    file = open("data/"+name+"/Index_"+name+".txt","r")
     indexs = []
     for line in file.readlines():
         if line == "": continue
@@ -30,7 +30,7 @@ def loadSample(name):
     :param name:
     :return:
     '''
-    matrix = np.loadtxt("data\\"+name+"\\sample_"+name+".txt")
+    matrix = np.loadtxt("data/"+name+"/sample_"+name+".txt")
     matrix = matrix.T # 进行转置，看需求
     return matrix
 
@@ -41,7 +41,7 @@ def loadDict(name):
     :param name:
     :return:
     '''
-    return np.loadtxt("data\\"+name+"\\dic_Sample.txt")
+    return np.loadtxt("data/"+name+"/dic_Sample.txt")
 
 
 def loadCoef(name):
@@ -50,7 +50,7 @@ def loadCoef(name):
     :param name:
     :return:
     '''
-    return np.loadtxt("data\\" + name + "\\coef_Sample.txt")
+    return np.loadtxt("data/" + name + "/coef_Sample.txt")
 
 def loadDictH(name):
     '''
@@ -58,7 +58,7 @@ def loadDictH(name):
     :param name:
     :return:
     '''
-    return np.loadtxt("data\\"+name+"\\dic_Sampleh.txt")
+    return np.loadtxt("data/"+name+"/dic_Sampleh.txt")
 
 def loadCoefH(name):
     '''
@@ -66,7 +66,7 @@ def loadCoefH(name):
     :param name:
     :return:
     '''
-    return np.loadtxt("data\\" + name + "\\coef_Sampleh.txt")
+    return np.loadtxt("data/" + name + "/coef_Sampleh.txt")
 
 
 def loadSampleRec(name):
@@ -75,6 +75,6 @@ def loadSampleRec(name):
     :param name:
     :return:
     '''
-    matrix = np.loadtxt("data\\" + name + "\\Sample_Recovery.txt")
+    matrix = np.loadtxt("data/" + name + "/Sample_Recovery.txt")
     matrix = matrix.T  # 进行转置，看需求
     return matrix
