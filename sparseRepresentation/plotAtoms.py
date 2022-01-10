@@ -79,7 +79,10 @@ def readAtoms(paths):
     '''
     res = []
     for path in paths:
-        res.append(nx.read_gexf(path))
+        try:
+            res.append(nx.read_gexf(path))
+        except:
+            print("读取 "+path+" 错误")
     return res
 
 
