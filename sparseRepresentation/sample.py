@@ -108,7 +108,7 @@ def sample(graph_path, name, subnet_size):
     mkdir(store_filename)
 
     if '.txt' in graph_path:
-        G = Creat_Random_Picture("E:\\教研室\\实验室\\原始网络们\\" + graph_path)
+        G = Creat_Random_Picture("E:\\教研室\\实验室\\gexfs\\" + graph_path)
     elif '.gexf' in graph_path:
         G = nx.read_gexf(graph_path)
         # G = serialize_graph(G)  #直接给注释掉，然后看一看呢 除了进行边预测，平常也不会影响其实
@@ -165,11 +165,11 @@ def sample(graph_path, name, subnet_size):
 
 def run(size=20):
     '''
-    采样data/原始网络们/ 目录下所有
+    采样data/gexfs/ 目录下所有
     :param size: 采样网络大小
     :return:
     '''
-    base_filename = "data/原始网络们/"
+    base_filename = "data/gexfs/"
     file_list = showDir(base_filename)
     count = 0
     for each in file_list:
@@ -183,7 +183,7 @@ def run(size=20):
 
 
 if __name__ == '__main__':
-    base_filename = "data/原始网络们/"
+    base_filename = "data/gexfs/"
     file_list = showDir(base_filename)
     count = 0
     for each in file_list:

@@ -42,8 +42,7 @@ def showDir(basePath):
     :return:
     '''
     list = os.listdir(basePath)
-    if "原始网络们" in list: list.remove("原始网络们")
-    if "原始网络们" in list: list.remove("原始网络们")
+    if "gexfs" in list: list.remove("gexfs")
     return list
 
 

@@ -2,7 +2,6 @@
 
 ## 介绍
 - 复杂网络稀疏表征相关tools，不断更新中
-- 文件路径为win平台习惯，如linux请自行修改
 
 ## 功能
 - 网络稀疏表征
@@ -20,6 +19,7 @@
                                                        原子排序
                                                        绘制原子图像
 - 所有的非工具py，都可以直接 xxx.run(args) 运行
+- 请在main py 同级目录下创建 /data/gexfs 路径，将gexf网络（networkx常用格式）放入
 
 ## attention
 - 使用pycharm时，建议将所有目录都 make directory as source root，否则会出现 no module named xxx
@@ -31,7 +31,7 @@
 #### sample.py 
 - aim: 采样
     - input: gexf文件
-        - 在运行目录下创建 $data/原始网络\$，将gexf文件放入
+        - 在运行目录下创建 $data/gexfs\$，将gexf文件放入
         - 此处处理无向图，只考虑结构，不考虑权重，属性等
     - output: 
         - Sample_xxx.txt 采样矩阵，每一行为自我中心网络（需要转置） TODO 直接np.saveTxt存储

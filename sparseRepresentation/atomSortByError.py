@@ -21,7 +21,7 @@ def run():
     # atom2nodes.getAllnodes()
     fileList = getFileName.get_filename("data/")
     for file in fileList:
-        if file == "原始网络们": continue
+        if file == "gexfs": continue
         print(file)
         print(runOne(file))
     print("done")

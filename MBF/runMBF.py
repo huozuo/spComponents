@@ -47,7 +47,7 @@ def run(Thres=0.95):
     :return:
     '''
     for name in showDir("data/"):
-        if name =="原始网络们":continue
+        if name =="gexfs":continue
         print("########" + name + "########")
         runOne(name, Thres)
     print("done")

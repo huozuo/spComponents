@@ -19,7 +19,7 @@ class CalcAtomMathc:
     def __init__(self,name,size):
         self.name = name
         self.size = size  # 原子的大小
-        self.G = self.loadNetwork("data/原始网络们/"+name+".gexf")
+        self.G = self.loadNetwork("data/gexfs/"+name+".gexf")
         self.nodes = {}
         self.readAtom2nodes("data/"+name+"/atom2nodes.txt")
 

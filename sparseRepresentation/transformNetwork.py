@@ -14,7 +14,7 @@ def transformNetwork(nodesList,G):
             实现一阶邻居和二阶邻居之间，分别进行排序，排序标准是度从高到低
             (看插入的位置，不考虑0的情况)
     :param nodesList: 节点列表
-    :param G: 原始网络们，networkx
+    :param G: gexfs，networkx
     :return: 返回排序之后的nodesList
     '''
 

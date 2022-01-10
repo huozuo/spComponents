@@ -20,7 +20,7 @@ def get_filename(base_filename):
     '''
     list = os.listdir(base_filename)
     try:
-        list.remove("原始网络们")
+        list.remove("gexfs")
     except:
         pass
     return list
@@ -130,7 +130,7 @@ def run(dictNum=200):
     '''
     fileList = get_filename("data/")
     for name in fileList:
-        if name =="原始网络们":continue
+        if name =="gexfs":continue
         print("######" + name + "######")
         # name = "ca-AstroPh2"
         filename = "data/" + name + "/Sample_" + name + ".txt"
