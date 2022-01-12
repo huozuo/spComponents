@@ -10,6 +10,7 @@ version: v2
 location: spComponents
 '''
 import numpy as np
+import loadTools
 import spComponents
 
 # 同质
@@ -113,8 +114,8 @@ def errorCalc(name):
     :param name: 文件名
     :return:
     '''
-    sample = spComponents.tools.loadTools.loadSample(name)
-    sampleRec = spComponents.tools.loadTools.loadSampleRec(name)
+    sample = loadTools.loadSample(name)
+    sampleRec = loadTools.loadSampleRec(name)
     originalEng = np.sum(sample)
     print("原本矩阵的能量：" + str(originalEng))
     error_matrix = sample - sampleRec
@@ -152,8 +153,8 @@ def nameErrH(name):
     :param name:
     :return:
     '''
-    sampleMatrix = spComponents.tools.loadTools.loadSample(name)
-    recMatrix = spComponents.tools.loadTools.loadSampleRec(name)
+    sampleMatrix = loadTools.loadSample(name)
+    recMatrix = loadTools.loadSampleRec(name)
 
     return matrixsErrH(sampleMatrix,recMatrix)
 
