@@ -21,7 +21,7 @@ def run(dict,coef,name):
     '''
     recMatrix = genRecMatrix(dict,coef)
     G = transformMatrix2gexf(recMatrix,name)
-    gexfPath = "data/"+name+"/"+name+".gexf"
+    gexfPath = "data/"+name+"/"+name+".gexfs"
     nx.write_gexf(G,gexfPath)
 
 
@@ -48,7 +48,7 @@ def genRecMatrix(dict,coef):
 
 def transformMatrix2gexf(recMatrix,name):
     '''
-    transform recMatrix to gexf
+    transform recMatrix to gexfs
     :param recMatrix: 恢复采样矩阵
     :param name: 网络名称
     :return:

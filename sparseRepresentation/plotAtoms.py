@@ -59,7 +59,7 @@ def runOne(name,plotArrange):
 def plotAtom(atom,id):
     '''
     绘制单个原子
-    :param atom: networkx gexf
+    :param atom: networkx gexfs
     :return:
     '''
     plt.subplot(id)

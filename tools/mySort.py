@@ -57,5 +57,5 @@ def findFirstDigit(str):
     return -1
 
 if __name__=="__main__":
-    a = ['Atom_13.gexf13', 'Atom_10.gexf', 'A11tom_.gexf', 'Atom_12.gexf', 'Atom_1.gexf', 'Atom_14.gexf','Atom']
+    a = ['Atom_13.gexf13', 'Atom_10.gexfs', 'A11tom_.gexfs', 'Atom_12.gexfs', 'Atom_1.gexfs', 'Atom_14.gexfs','Atom']
     print(sortStr(a))

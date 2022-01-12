@@ -37,7 +37,7 @@ class Atom2Nodes():
         :return:
         '''
         fileList = getFileName.showDir("data/" + self.name + "/")
-        cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexf')
+        cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexfs')
         return cnt
 
     def getAtoms(self):
@@ -47,7 +47,7 @@ class Atom2Nodes():
         '''
         atoms = []
         for i in range(1,self.atomNum+1):
-            atomName = "data/" + self.name + "/Atom_" + str(i) + ".gexf"
+            atomName = "data/" + self.name + "/Atom_" + str(i) + ".gexfs"
             atoms.append(nx.read_gexf(atomName))
         return atoms
 
