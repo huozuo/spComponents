@@ -9,7 +9,7 @@ version: v3
 import numpy as np
 from sklearn import linear_model
 import os
-from spComponents.tools import errorTools
+from ..tools import errorTools
 
 
 def get_filename(base_filename):

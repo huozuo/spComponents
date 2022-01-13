@@ -4,11 +4,11 @@ author: pmy
 function: 运行布尔矩阵分解
 '''
 
-from spComponents.MBF.MEBF import MEBF
-from spComponents.tools.getFileName import showDir
-from spComponents.tools.errorTools import *
-from spComponents.tools.loadTools import *
-from spComponents.tools.saveTools import *
+from .MEBF import MEBF
+from ..tools.getFileName import showDir
+from ..tools.errorTools import *
+from ..tools.loadTools import *
+from ..tools.saveTools import *
 
 
 def MBF(matrix,Thres=0.95,DIM=150):

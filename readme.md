@@ -13,7 +13,7 @@
 - 计算稀疏表征误差
 
 ## 如何使用
-- import spComponents
+- from spComponents.sparseRepresentation import xxxx    xxx.run()
 - 仿照demo，调用各个py
 - 复杂网络稀疏表征过程： 采样 - 矩阵分解 - 原子生成 - 网络恢复 - 寻找原子对应的实际节点
                                                        原子排序

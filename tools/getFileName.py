@@ -7,7 +7,7 @@ version: v2
 '''
 import os
 import re
-import mySort
+from . import mySort
 
 def getSpecPaths(basePath,name):
     '''

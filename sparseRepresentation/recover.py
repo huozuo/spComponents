@@ -6,8 +6,8 @@ description: 将dic、coef--recMatrix--gexf的过程重写
 
 import networkx as nx
 import numpy as np
-import mergeMatrixs
-import spComponents
+from . import mergeMatrixs
+from ..tools import loadTools
 import tqdm
 
 
@@ -53,7 +53,7 @@ def transformMatrix2gexf(recMatrix,name):
     :param name: 网络名称
     :return:
     '''
-    indexs = spComponents.tools.loadTools.loadIndexs(name)
+    indexs = loadTools.loadIndexs(name)
     G = nx.Graph()
     m,n = np.shape(recMatrix)
     sampleSize = len(indexs[0])

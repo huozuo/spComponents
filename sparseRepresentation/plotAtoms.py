@@ -7,7 +7,7 @@ note: 1. plt.subplot(xyd),x 为行数，y为列数， d为多少个 每个数，
 '''
 import matplotlib.pyplot as plt
 import networkx as nx
-import spComponents
+from ..tools import getFileName
 from tqdm import tqdm
 
 def run(plotArrange=241):
@@ -17,7 +17,7 @@ def run(plotArrange=241):
     :return:
     '''
     basePath = "data/"
-    files = spComponents.tools.getFileName.showDir(basePath)
+    files = getFileName.showDir(basePath)
     for file in tqdm(files):
         try:
             runOne(file,plotArrange)
@@ -34,7 +34,7 @@ def runOne(name,plotArrange):
     '''
     # 读取目录下的所有Atom_文件数量
     basePath = "data/"+name+"/"
-    filePaths = spComponents.tools.getFileName.getSpecPaths(basePath,"Atom")
+    filePaths = getFileName.getSpecPaths(basePath,"Atom")
     if len(filePaths)==0: return
     print("plot "+name)
     atoms = readAtoms(filePaths)

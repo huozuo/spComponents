@@ -10,7 +10,7 @@ location: spComponents
 from numpy import *
 import networkx as nx
 import numpy as np
-from spComponents.tools import getFileName
+from ..tools import getFileName
 
 
 class Atom2Nodes():

@@ -11,8 +11,8 @@ version: v1
 import networkx as nx
 import numpy as np
 import os
-from spComponents.tools.getFileName import showDir
-from spComponents.sparseRepresentation.transformNetwork import transformNetwork
+from ..tools.getFileName import showDir
+from .transformNetwork import transformNetwork
 
 
 def get_average_degree_of_network(G):
@@ -119,7 +119,7 @@ def sample(graph_path, name, subnet_size):
     f = open(store_filename + "/Sample_{}.txt".format(name), 'w',encoding='utf-8')  # 每一行都是邻接矩阵（egonetwork）
     f2 = open(store_filename + "/Index_{}.txt".format(name), 'w')  # 每一行都是该节点的邻接节点
 
-    print("点数是：",G.number_of_nodes()) #for test
+    print("num of nodes：",G.number_of_nodes()) #for test
 
     for i in G.nodes():
         ks = ks + 1
@@ -177,7 +177,7 @@ def run(size=20):
         print(name)
         sample(filename, name, size)
         count += 1
-        print("进度完成{}/{}".format(str(count), str(len(file_list))))
+        print("process{}/{}".format(str(count), str(len(file_list))))
 
 
 if __name__ == '__main__':

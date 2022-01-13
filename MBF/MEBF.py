@@ -8,7 +8,7 @@ version:v1
 location: spComponents
 '''
 
-from spComponents.MBF.expansion import *
+from .expansion import *
 
 
 def error(residuMatrix, columnVector,rowVector):

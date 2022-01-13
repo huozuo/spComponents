@@ -10,8 +10,9 @@ version: v2
 location: spComponents
 '''
 import numpy as np
-import loadTools
-import spComponents
+from . import loadTools
+
+from ..sparseRepresentation import recover
 
 # 同质
 def matrixsErr(aMatrix,bMatrix):
@@ -167,7 +168,7 @@ def dcErrH(dict,coef,sampleMatrix):
     :param sampleMatrix:
     :return:
     '''
-    recMatrix = spComponents.sparseRepresentation.recover.genRecMatrix(dict,coef)
+    recMatrix = recover.genRecMatrix(dict,coef)
     return matrixsErrH(sampleMatrix,recMatrix)
 
 

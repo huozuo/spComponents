@@ -6,9 +6,8 @@ func: 按照原子生成给sample矩阵带来的误差下降进行排序
 version：v2
 '''
 
-from spComponents.sparseRepresentation import atom2nodes
-from spComponents.tools import getFileName, errorTools
-import spComponents
+from . import atom2nodes
+from ..tools import getFileName, loadTools,errorTools
 import numpy as np
 
 
@@ -19,7 +18,7 @@ def run():
     '''
     # atom2nodes = Atom2Nodes(name)
     # atom2nodes.getAllnodes()
-    fileList = getFileName.get_filename("data/")
+    fileList = getFileName.showDir("data/")
     for file in fileList:
         if file == "gexfs": continue
         print(file)
@@ -34,9 +33,9 @@ def runOne(name):
     :return:
     '''
     # 加载矩阵
-    sampleMatrix = spComponents.tools.loadTools.loadSample(name) # 获取采样矩阵
-    dictMatrix = spComponents.tools.loadTools.loadDict(name) #获取字典
-    coefMatrix = spComponents.tools.loadTools.loadCoef(name) #获取稀疏码
+    sampleMatrix = loadTools.loadSample(name) # 获取采样矩阵
+    dictMatrix = loadTools.loadDict(name) #获取字典
+    coefMatrix = loadTools.loadCoef(name) #获取稀疏码
     #获得原子和字典的映射
     atom2nodesTool = atom2nodes.Atom2Nodes(name)
     atom2dict = atom2nodesTool.atom2dict # 原子与字典的映射关系
@@ -77,7 +76,7 @@ def calcAtomError(sampleMatrix,dictMatrix,coefMatrix,atom2dict,atomError):
             # coef = np.concatenate((coef, coefVec), axis=0)
 
         # 这里有可能是有负数的，不过也无所谓，
-        curError = spComponents.tools.loadTools.absError(sampleMatrix, dict, coef)
+        curError = errorTools.absError(sampleMatrix, dict, coef)
 
         errRate = 1 - curError/originalSum
 
@@ -104,7 +103,7 @@ def getSpecialAtom(sampleMatrix,dictMatrix,coefMatrix,atom2dict,atomError):
             coefVec = coefMatrix[dictIndex, :]
             dict = np.concatenate((dict, dictVec.reshape((np.shape(dictVec)[0], 1))), axis=1)
             coef = np.concatenate((coef, coefVec.reshape((1, np.shape(coefVec)[0]))), axis=0)
-        curError = spComponents.tools.loadTools.absError(sampleMatrix, dict, coef)
+        curError = errorTools.absError(sampleMatrix, dict, coef)
         errRate = curError/originalSum
         # 只打印一次 用1,2,4来进行划分，使得只被打印一次
         if flag<4 and errRate <=0.1:

@@ -13,7 +13,7 @@ version：v0
 location：spComponents
 '''
 import networkx as nx
-from spComponents.tools.list2Lists import *
+from ..tools.list2Lists import *
 
 class CalcAtomMathc:
     def __init__(self,name,size):

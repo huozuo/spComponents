@@ -13,7 +13,6 @@ from pyecharts.charts import Grid
 from snapshot_phantomjs import snapshot
 import threading
 
-import getListFromCSV
 
 
 def getBar(name,xaxis,data1,data2):
