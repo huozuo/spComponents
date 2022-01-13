@@ -38,7 +38,7 @@ def runOne(name,Thres):
     #存储dict，coef
     save(name,dict,coef)
 
-    print("##########分解完毕##########")
+    # print("##########分解完毕##########")
 
 def run(Thres=0.95):
     '''

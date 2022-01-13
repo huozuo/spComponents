@@ -22,7 +22,7 @@ def run(plotArrange=241):
         try:
             runOne(file,plotArrange)
         except:
-            print(file+": 绘制失败")
+            print(file+"plot failed")
 
 
 def runOne(name,plotArrange):
@@ -36,7 +36,7 @@ def runOne(name,plotArrange):
     basePath = "data/"+name+"/"
     filePaths = spComponents.tools.getFileName.getSpecPaths(basePath,"Atom")
     if len(filePaths)==0: return
-    print("开始绘制："+name)
+    print("plot "+name)
     atoms = readAtoms(filePaths)
 
     # 行数、列数
@@ -53,7 +53,7 @@ def runOne(name,plotArrange):
             f.set_size_inches(18, 10) # 图像的尺寸
             plt.savefig(basePath+"atomFig_"+str(int(i//total))+".png",dpi=100)
             plt.close()
-    print("=====绘制完成=====")
+    print("=====plot done=====")
 
 
 def plotAtom(atom,id):
@@ -82,7 +82,7 @@ def readAtoms(paths):
         try:
             res.append(nx.read_gexf(path))
         except:
-            print("读取 "+path+" 错误")
+            print("read "+path+" err")
     return res
 
 

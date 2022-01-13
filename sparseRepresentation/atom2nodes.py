@@ -179,7 +179,7 @@ class Atom2Nodes():
             dictNx = self.dict2atom(dict)
             GM = nx.isomorphism.GraphMatcher(atomNx,dictNx)
             if not GM.is_isomorphic():# 必须要先is_isomorphic 再获取mapping，不然没有结果
-                print("error：字典向量竟然与atom不匹配")
+                print("error: dict doesnt match with atom")
             mapping = GM.mapping # 原子中的id是str，所以这里需要针对性的str一下
 
             mapping["-1"] = -1 #将-1纳入，这样下面就不用再进行if判断了
@@ -269,17 +269,17 @@ class Atom2Nodes():
         :param data:
         :return:
         '''
-        print("开始存储")
+        # print("开始存储")
         fileName = "data/" + self.name + "/atom2nodes.txt"
         f = open(fileName, 'w', encoding="UTF-8")
         for key in data.keys():
-            f.write("原子: " + str(key) + "\n")
-            f.write("节点: ")
+            f.write("atom:" + str(key) + "\n")
+            f.write("node:")
             for each in data[key]:
                 f.write(str(each) + " ")
             f.write("\n")
         f.close()
-        print("存储完毕")
+        # print("存储完毕")
 
 def run():
     # atom2nodes = Atom2Nodes(name)

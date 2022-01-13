@@ -94,15 +94,15 @@ def error(sampleMatrix,dict,coef):
     '''
     # sampleMatrix[sampleMatrix > 0] = 1
     originalEng = calcSum(sampleMatrix)
-    print("原本矩阵的能量：" + str(originalEng))
+    print("original eng: " + str(originalEng))
     reconstruction_matrix = np.dot(dict, coef)
     # reconstruction_matrix[reconstruction_matrix > 1] = 1
     error_matrix = sampleMatrix - reconstruction_matrix
     error_matrix[error_matrix != 0] = 1
     errorEng = calcSum(error_matrix)
     err = errorEng / originalEng
-    print("误差是：" + str(errorEng))
-    print("误差率为：" + str(err))
+    print("err: " + str(errorEng))
+    print("err per: " + str(err))
     return err
 
 
@@ -117,13 +117,13 @@ def errorCalc(name):
     sample = loadTools.loadSample(name)
     sampleRec = loadTools.loadSampleRec(name)
     originalEng = np.sum(sample)
-    print("原本矩阵的能量：" + str(originalEng))
+    print("original eng: " + str(originalEng))
     error_matrix = sample - sampleRec
     error_matrix[error_matrix != 0] = 1
     errorEng = np.sum(error_matrix)
     err = errorEng / originalEng
-    print("最终误差是：" + str(errorEng))
-    print("误差率为：" + str(err))
+    print("err: " + str(errorEng))
+    print("err per: " + str(err))
     return err
 
 

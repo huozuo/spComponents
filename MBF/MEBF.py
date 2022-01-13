@@ -65,7 +65,6 @@ def MEBF(Thres,MAT,DIM=200,COVER=0.995):
             if np.shape(TEMP)[0]==1: #如果这个条件的只有1个数 这很正常
                 B1=M1[:,TEMP[0,0]] #B1是中位数列
                 # 计算M1矩阵中与B1相似超过阈值的列有多少
-                # TODO 修改这里 1 在这里进行expansion，并进行阈值的衡量
                 expansionCol(M1,MAT,B1,B2,Thres)
                 #计算误差
                 e2 = error(M1,B1,B2)

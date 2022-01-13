@@ -232,4 +232,4 @@ def run():
         print(each)
         Atom_Gen(filename, each)
         count += 1
-        print("进度完成{}/{}".format(count,len(network_director_lsit)))
+        print("process{}/{}".format(count,len(network_director_lsit)))

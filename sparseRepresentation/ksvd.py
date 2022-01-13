@@ -73,7 +73,7 @@ class KSVD(object):
         """
         使用KSVD更新字典的过程
         """
-        print("初始误差是：",np.sum(y))
+        print("original err",np.sum(y))
         for i in range(self.n_components):
             index = np.nonzero(x[i, :])[0]  #返回非0元素的索引，计数规则从0开始
             if len(index) == 0:
@@ -83,7 +83,7 @@ class KSVD(object):
             r = (y - np.dot(d, x))[:, index]  #计算误差矩阵（为了保证编码矩阵稀疏，只选择编码中非0的索引）
             # e = np.linalg.norm(y - np.dot(d, x))
             e = errorTools.absError(y, d, x)
-            print("误差是：" + str(e))  # for test
+            print("err：" + str(e))  # for test
             u, s, v = np.linalg.svd(r, full_matrices=False)  #用svd的方法，来更新第i列字典和第i行的稀疏矩阵 这里会不收敛，用scipy来试一试 删去full_matrix试试
             # u,s,v = scipy.linalg.svd(r)
 
@@ -114,7 +114,7 @@ class KSVD(object):
         """
         self._initialize(y)  #初始化字典矩阵
         for i in range(self.max_iter):
-            print("第 "+str(i)+"次迭代")
+            print("iter: "+str(i))
             x = linear_model.orthogonal_mp(self.dictionary, y, n_nonzero_coefs=self.n_nonzero_coefs)  #稀疏编码 似乎是根据y=dx，已知y和d，直接求解出x
             #达到优化目标，则结束，否则最大迭代
             self._update_dict(y, self.dictionary, x) #更新字典和稀疏编码  (有问题，这里返回不用接受的嘛，怎么就直接更新了)这里不是引用传参，哦这个似乎是不影响的，因为只需要字典，所以他这里每次都算x
@@ -138,14 +138,14 @@ def run(dictNum=200):
         y = y.T
         print(y.shape)
         ksvd = KSVD(dictNum)
-        print("初始化完毕")
+        print("++init++")
         dictionary, sparsecode = ksvd.fit(y)
-        print("训练完毕")
+        print("++done++")
         dic_name = "data/" + name + "/dic_Sample.txt"
         coef_name = "data/" + name + "/coef_Sample.txt"
         np.savetxt(dic_name, dictionary, fmt="%4f")
         np.savetxt(coef_name, sparsecode, fmt="%4f")
-        print("存储完毕")
+        # print("存储完毕")
 
 
 

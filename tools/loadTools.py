@@ -30,7 +30,7 @@ def loadSample(name):
     :param name:
     :return:
     '''
-    matrix = np.loadtxt("data/"+name+"/sample_"+name+".txt")
+    matrix = np.loadtxt("data/"+name+"/Sample_"+name+".txt")
     matrix = matrix.T # 进行转置，看需求
     return matrix
 

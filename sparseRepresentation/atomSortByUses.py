@@ -20,7 +20,7 @@ def run():
     '''
     # atom2nodes = Atom2Nodes(name)
     # atom2nodes.getAllnodes()
-    fileList = getFileName.get_filename("data/")
+    fileList = getFileName.showDir("data/")
     for file in fileList:
         if file == "gexfs": continue
         print(file)
@@ -55,7 +55,7 @@ def runOne(name):
     # 对结果进行排序
     atomUses = sorted(atomUses.items(),key=lambda item:item[1],reverse=True)
     # 存储结果
-    storePath = "data//"+name+"//原子使用次数.txt"
+    storePath = "data//"+name+"//atomUses.txt"
     save_tupleList_txt(atomUses,storePath)
     print("done")
     # res = [atom for atom, rate in atomUses]  # 将误差率下降删除，只返回顺序
