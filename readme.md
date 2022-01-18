@@ -22,8 +22,8 @@
 - 请在main py 同级目录下创建 /data/gexfs 路径，将gexf网络（networkx常用格式）放入
 
 ## attention
-- 使用pycharm时，建议将所有目录都 make directory as source root，否则会出现 no module named xxx
-    - 非pycharm无序考虑
+- 使用pycharm时，建议将spComponents的父节点 make directory as source root，否则会出现 no module named xxx
+    - 非pycharm需要使用sys.path.append(spComponents的父节点路径)
 - 
 
 ## 具体情况

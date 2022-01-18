@@ -57,7 +57,7 @@ def Atom_Gen(base_name, name,sep = ""):
         In_F = False
         if Sample_Set == []:
             Sample_Set.append(Sample)
-            nx.write_gexf(Sample, base_name + "/Atom_" + str(Num_Sample) + ".gexfs", encoding='utf-8')  # 书写原子的路径
+            nx.write_gexf(Sample, base_name + "/Atom_" + str(Num_Sample) + ".gexf", encoding='utf-8')  # 书写原子的路径
             Num_Sample = Num_Sample + 1
         # 去同构
         for element in Sample_Set:
@@ -68,7 +68,7 @@ def Atom_Gen(base_name, name,sep = ""):
             #     In_F = True
         if not In_F:
             Sample_Set.append(Sample)
-            nx.write_gexf(Sample, base_name + "/Atom_" + str(Num_Sample) + ".gexfs", encoding='utf-8')
+            nx.write_gexf(Sample, base_name + "/Atom_" + str(Num_Sample) + ".gexf", encoding='utf-8')
             Num_Sample = Num_Sample + 1
 
     print('Number of Atom: ', len(Sample_Set))
@@ -195,7 +195,7 @@ def Atom_Gen(base_name, name,sep = ""):
     Average_Deg = []
 
     for i in range(1, Atoms_Num + 1):
-        G = nx.read_gexf(base_name + '/Atom_' + str(i) + '.gexfs')  # 读取所有的原子网络
+        G = nx.read_gexf(base_name + '/Atom_' + str(i) + '.gexf')  # 读取所有的原子网络
         node_num = len(G.nodes())
         edge_num = len(G.edges())
         Node_Num.append(node_num)
