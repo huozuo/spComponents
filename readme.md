@@ -26,6 +26,18 @@
     - 非pycharm需要使用sys.path.append(spComponents的父节点路径)
 - 
 
+## 关于网络稀疏表征
+![ppt_1](image/ppt_1.png)
+![ppt_2](image/ppt_2.png)
+![ppt_3](image/ppt_3.png)
+![ppt_4](image/ppt_4.png)
+![ppt_5](image/ppt_5.png)
+![ppt_6](image/ppt_6.png)
+![ppt_7](image/ppt_7.png)
+![ppt_8](image/ppt_8.png)
+(刚好做了个ppt，就放上来展示一下网络稀疏表征的流程)
+
+
 ## 具体情况
 ### sparseRepresentation
 #### sample.py 

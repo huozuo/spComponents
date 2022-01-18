@@ -85,6 +85,28 @@ def readAtoms(paths):
             print("read "+path+" err")
     return res
 
+def plotNetworks(atoms,plotArrange=241):
+    '''
+    主方法
+    :param name:
+    :param plotArrange: 画图排列的方式 行数、列数、第几个，此处任意数字不能超过10
+    :return:
+    '''
+    # 行数、列数
+    row = plotArrange//100
+    col = plotArrange//10 - 10*row
+    total = row*col
+
+    # 挨个的画图
+    for i in range(len(atoms)):
+        seq = i%total
+        plotAtom(atoms[i],plotArrange+seq)
+        if seq == total-1 or i==len(atoms)-1:
+            f = plt.gcf()
+            f.set_size_inches(18, 10) # 图像的尺寸
+            plt.savefig("data/"+"Fig_"+str(int(i//total))+".png",dpi=100)
+            plt.close()
+    print("=====plot done=====")
 
 if __name__=="__main__":
     runOne("wn18_1308")
