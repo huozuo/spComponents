@@ -185,7 +185,7 @@ def Atom_Gen(base_name, name,sep = ""):
         Sample = f_S.readline()
         Index = f_I.readline()
 
-    nx.write_gexf(G, base_name + "/Network_recover.gexfs", encoding='utf-8')  # 写入恢复网络
+    nx.write_gexf(G, base_name + "/Network_recover.gexf", encoding='utf-8')  # 写入恢复网络
     f_S.close()
     f_I.close()
 
