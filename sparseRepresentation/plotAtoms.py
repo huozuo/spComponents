@@ -18,7 +18,7 @@ def run(plotArrange=241):
     '''
     basePath = "data/"
     files = getFileName.showDir(basePath)
-    for file in tqdm(files):
+    for file in files:
         try:
             runOne(file,plotArrange)
         except:
@@ -53,7 +53,7 @@ def runOne(name,plotArrange):
             f.set_size_inches(18, 10) # 图像的尺寸
             plt.savefig(basePath+"atomFig_"+str(int(i//total))+".png",dpi=100)
             plt.close()
-    print("=====plot done=====")
+    # print("=====plot done=====")
 
 
 def plotAtom(atom,id):
@@ -109,4 +109,5 @@ def plotNetworks(atoms,plotArrange=241):
     print("=====plot done=====")
 
 if __name__=="__main__":
-    runOne("wn18_1308")
+    # runOne("wn18_1308")
+    pass

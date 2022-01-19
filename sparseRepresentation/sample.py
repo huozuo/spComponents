@@ -172,7 +172,7 @@ def run(size=20):
     count = 0
     for each in file_list:
         filename = each
-        name = filename.strip(".txt").strip(".gexfs")
+        name = filename.strip(".txt").strip(".gexf")
         filename = base_filename + filename
         print(name)
         sample(filename, name, size)
@@ -186,7 +186,7 @@ if __name__ == '__main__':
     count = 0
     for each in file_list:
         filename = each
-        name = filename.strip(".txt").strip(".gexfs")
+        name = filename.strip(".txt").strip(".gexf")
         filename = base_filename + filename
         print(name)
         sample(filename, name, 20)
