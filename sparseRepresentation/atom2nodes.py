@@ -11,7 +11,7 @@ from numpy import *
 import networkx as nx
 import numpy as np
 from ..tools import getFileName
-
+from .networkInfo import NetworkInfo
 
 class Atom2Nodes():
 
@@ -22,133 +22,134 @@ class Atom2Nodes():
         :param name:
         '''
         # 读取字典矩阵，稀疏码矩阵
-        self.dict = self.getMatrix("data/" + name + "/dic_Sample.txt")
-        self.coef = self.getMatrix("data/" + name + "/coef_Sample.txt")
-        self.index = self.getIndex(name)
-        self.atom2dict = self.getAtom2dict(name) # {原子序号：字典向量序号}
+        # self.dict = self.getMatrix("data/" + name + "/dic_Sample.txt")
+        # self.coef = self.getMatrix("data/" + name + "/coef_Sample.txt")
+        # self.index = self.getIndex(name)
+        # self.atom2dict = self.getAtom2dict(name) # {原子序号：字典向量序号}
         self.name = name
-        self.atomNum = self.getAtomNum()
-        self.atoms = self.getAtoms()
+        # self.atomNum = self.getAtomNum()
+        # self.atoms = self.getAtoms()
         self.curNum = 0
+        self.networkInfo = NetworkInfo(name) # 当前name的所有网络信息 抽取出来单独作为一个类
 
-    def getAtomNum(self):
-        '''
-        获得指定目录下的原子个数
-        :return:
-        '''
-        fileList = getFileName.showDir("data/" + self.name + "/")
-        cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexfs')
-        return cnt
+    # def getAtomNum(self):
+    #     '''
+    #     获得指定目录下的原子个数
+    #     :return:
+    #     '''
+    #     fileList = getFileName.showDir("data/" + self.name + "/")
+    #     cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexfs')
+    #     return cnt
 
-    def getAtoms(self):
-        '''
-        获得指定目录下的所有原子网络
-        :return:
-        '''
-        atoms = []
-        for i in range(1,self.atomNum+1):
-            atomName = "data/" + self.name + "/Atom_" + str(i) + ".gexfs"
-            atoms.append(nx.read_gexf(atomName))
-        return atoms
+    # def getAtoms(self):
+    #     '''
+    #     获得指定目录下的所有原子网络
+    #     :return:
+    #     '''
+    #     atoms = []
+    #     for i in range(1,self.atomNum+1):
+    #         atomName = "data/" + self.name + "/Atom_" + str(i) + ".gexfs"
+    #         atoms.append(nx.read_gexf(atomName))
+    #     return atoms
 
-    def getMatrix(self,filename):
-        return np.loadtxt(filename)
+    # def getMatrix(self,filename):
+    #     return np.loadtxt(filename)
 
-    def getIndex(self,name):
-        '''
-        根据name，获取实际的ego-network的节点情况
-        :param name:
-        :return:
-        '''
-        filename = "data/" + name + "/Index_" + name + ".txt"
-        index = []
-        with open(filename, 'r', encoding='utf-8') as f:
-            for line in f.readlines():
-                names = line.strip('\n').split(',')
-                names.remove('')
-                names = [int(name) for name in names]
-                index.append(names)
-        f.close()
-        return index
+    # def getIndex(self,name):
+    #     '''
+    #     根据name，获取实际的ego-network的节点情况
+    #     :param name:
+    #     :return:
+    #     '''
+    #     filename = "data/" + name + "/Index_" + name + ".txt"
+    #     index = []
+    #     with open(filename, 'r', encoding='utf-8') as f:
+    #         for line in f.readlines():
+    #             names = line.strip('\n').split(',')
+    #             names.remove('')
+    #             names = [int(name) for name in names]
+    #             index.append(names)
+    #     f.close()
+    #     return index
 
-    def getAtom2dict(self,name):
-        '''
-        根据字典矩阵来获取atom-dict的映射 {atom : dict}
-        :param name:
-        :return:
-        '''
-        f = open("data/" +name+ "/dic_Sample.txt")  # 字典文件的路径
-        line = f.readline()
-        G = []  # 存储字典的值
-        # Num_Atom = 200  #字典矩阵的列数 即原子的个数
-        # Atom_Len = subnet_size   #字典矩阵的行数的开平方 即原子的size
-        dic_matrix = self.dict
-        Atom_Len = int(sqrt(dic_matrix.shape[0]))
-        Num_Atom = dic_matrix.shape[1]  # 直接覆盖
-
-        atom2Dict = {}
-        for i in range(Num_Atom):
-            atom2Dict[i + 1] = []  # 初始化，最多这么多个
-
-        #####去同构，获取原子
-        # 读进来 获得G 包含字典的列表
-        for i in range(Num_Atom):
-            G.append([])
-        while line != '':
-            line = line.replace('\n', '')
-            line = line.split(' ')
-            k = 0
-            for element in line:
-                G[k].append(float(element))
-                k = k + 1
-            line = f.readline()
-        f.close()
-
-        Sample_Set = []
-        for i in range(len(G)):  # 对每个列向量进行遍历，分别生成原子
-            Sample = self.dict2atom(G[i])
-            # 进行存储
-            In_F = False
-            if Sample_Set == []:  # 第一个原子直接存储
-                Sample_Set.append(Sample)
-                atom2Dict[len(Sample_Set)].append(i)  # 第一个向量就是1号原子
-                continue
-            # 去同构
-            for j in range(len(Sample_Set)):
-                element = Sample_Set[j]
-                if nx.is_isomorphic(Sample, element):
-                    atom2Dict[j + 1].append(i)  # 第i个列向量放到第j+1个原子里去
-                    In_F = True
-            if not In_F:
-                Sample_Set.append(Sample)
-                atom2Dict[len(Sample_Set)].append(i)  # 当前第j个原子加入i
-
-        # 删去为空的原子
-        atom2DictCopy = atom2Dict.copy()
-        for key in atom2DictCopy:
-            if len(atom2Dict[key]) == 0:
-                atom2Dict.pop(key)
-
-
-        return atom2Dict
-
-    def dict2atom(self,dict):
-        '''
-        将dict转换成atom，这样适合进行比对
-        :param dict: 字典向量
-        :return:
-        '''
-        Atom_Len = int(sqrt(len(dict)))
-        g = nx.Graph()
-        for j in range(Atom_Len):
-            # for k in range(j + 1, Atom_Len):
-            for k in range(Atom_Len):  ## 问题出在这
-                if j == k: continue
-                t = Atom_Len * j + k
-                if dict[t] > 0.01:  # 这里要改的 TODO
-                    g.add_edge(j, k)
-
-        return g
+    # def getAtom2dict(self,name):
+    #     '''
+    #     根据字典矩阵来获取atom-dict的映射 {atom : dict}
+    #     :param name:
+    #     :return:
+    #     '''
+    #     f = open("data/" +name+ "/dic_Sample.txt")  # 字典文件的路径
+    #     line = f.readline()
+    #     G = []  # 存储字典的值
+    #     # Num_Atom = 200  #字典矩阵的列数 即原子的个数
+    #     # Atom_Len = subnet_size   #字典矩阵的行数的开平方 即原子的size
+    #     dic_matrix = self.dict
+    #     Atom_Len = int(sqrt(dic_matrix.shape[0]))
+    #     Num_Atom = dic_matrix.shape[1]  # 直接覆盖
+    #
+    #     atom2Dict = {}
+    #     for i in range(Num_Atom):
+    #         atom2Dict[i + 1] = []  # 初始化，最多这么多个
+    #
+    #     #####去同构，获取原子
+    #     # 读进来 获得G 包含字典的列表
+    #     for i in range(Num_Atom):
+    #         G.append([])
+    #     while line != '':
+    #         line = line.replace('\n', '')
+    #         line = line.split(' ')
+    #         k = 0
+    #         for element in line:
+    #             G[k].append(float(element))
+    #             k = k + 1
+    #         line = f.readline()
+    #     f.close()
+    #
+    #     Sample_Set = []
+    #     for i in range(len(G)):  # 对每个列向量进行遍历，分别生成原子
+    #         Sample = self.dict2atom(G[i])
+    #         # 进行存储
+    #         In_F = False
+    #         if Sample_Set == []:  # 第一个原子直接存储
+    #             Sample_Set.append(Sample)
+    #             atom2Dict[len(Sample_Set)].append(i)  # 第一个向量就是1号原子
+    #             continue
+    #         # 去同构
+    #         for j in range(len(Sample_Set)):
+    #             element = Sample_Set[j]
+    #             if nx.is_isomorphic(Sample, element):
+    #                 atom2Dict[j + 1].append(i)  # 第i个列向量放到第j+1个原子里去
+    #                 In_F = True
+    #         if not In_F:
+    #             Sample_Set.append(Sample)
+    #             atom2Dict[len(Sample_Set)].append(i)  # 当前第j个原子加入i
+    #
+    #     # 删去为空的原子
+    #     atom2DictCopy = atom2Dict.copy()
+    #     for key in atom2DictCopy:
+    #         if len(atom2Dict[key]) == 0:
+    #             atom2Dict.pop(key)
+    #
+    #
+    #     return atom2Dict
+    #
+    # def dict2atom(self,dict):
+    #     '''
+    #     将dict转换成atom，这样适合进行比对
+    #     :param dict: 字典向量
+    #     :return:
+    #     '''
+    #     Atom_Len = int(sqrt(len(dict)))
+    #     g = nx.Graph()
+    #     for j in range(Atom_Len):
+    #         # for k in range(j + 1, Atom_Len):
+    #         for k in range(Atom_Len):  ## 问题出在这
+    #             if j == k: continue
+    #             t = Atom_Len * j + k
+    #             if dict[t] > 0.01:  # 这里要改的 TODO
+    #                 g.add_edge(j, k)
+    #
+    #     return g
 
     def dict2vnodes(self,dict):
         '''
@@ -159,7 +160,7 @@ class Atom2Nodes():
         :return:
         '''
         n = int(sqrt(len(dict))) # 自我中心网络的size
-        atomNx = self.atoms[self.curNum-1] # 获取当前的nx network
+        atomNx = self.networkInfo.atoms[self.curNum-1] # 获取当前的nx network
         nodes = list(atomNx.nodes)
         nodes = sorted([int(node) for node in nodes])
         # 将-1放到4和7之间，比如这个就放两个
@@ -173,10 +174,10 @@ class Atom2Nodes():
             for i in range(n-nodes[len(nodes)-1]-1): ans.append(-1) # 将最后的补齐
 
         # 获取映射关系
-        dictNum = len(self.atom2dict[self.curNum])
+        dictNum = len(self.networkInfo.atom2dict[self.curNum])
 
         if dictNum >1: # 当原子对应字典数量只有1时，不用同构映射, 即不用任何修改
-            dictNx = self.dict2atom(dict)
+            dictNx = self.networkInfo.dict2atom(dict)
             GM = nx.isomorphism.GraphMatcher(atomNx,dictNx)
             if not GM.is_isomorphic():# 必须要先is_isomorphic 再获取mapping，不然没有结果
                 print("error: dict doesnt match with atom")
@@ -197,7 +198,7 @@ class Atom2Nodes():
         :return:
         '''
         nodes = []
-        index = self.index[i]
+        index = self.networkInfo.index[i]
         for vnode in vnodes:
             if vnode==-1: nodes.append(-1) # -1跳过
             else: nodes.append(index[vnode])
@@ -223,8 +224,8 @@ class Atom2Nodes():
         :param index:
         :return:
         '''
-        dict = self.dict[:,i] #当前字典向量 改好了
-        coef = self.coef[i,:] #当前稀疏码向量
+        dict = self.networkInfo.dict[:,i] #当前字典向量 改好了
+        coef = self.networkInfo.coef[i,:] #当前稀疏码向量
         vnodes = self.dict2vnodes(dict) #确定当前虚拟节点
         networks = self.coef2egoNetworks(coef) #确定涉及哪些ego-networks
         nodes = []
@@ -240,7 +241,7 @@ class Atom2Nodes():
         :return:
         '''
         nodes = []
-        dictIndexs = self.atom2dict[atomIndex]
+        dictIndexs = self.networkInfo.atom2dict[atomIndex]
         for dictIndex in dictIndexs:
             nodes += self.dict2nodes(dictIndex)
 
@@ -253,7 +254,7 @@ class Atom2Nodes():
         :return:
         '''
         res = {}
-        for i in range(1,self.atomNum+1):
+        for i in range(1,self.networkInfo.atomNum+1):
             # if i == 97: continue
             # print(i)
             self.curNum = i # 将当前的curNum设置成atomNum 这样就可以用的上
