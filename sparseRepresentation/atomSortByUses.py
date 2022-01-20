@@ -24,7 +24,10 @@ def run():
     for file in fileList:
         if file == "gexfs": continue
         print(file)
-        print(runOne(file))
+        atomUses = runOne(file)
+        # 存储结果
+        storePath = "data/" + file + "/atomUses.txt"
+        save_tupleList_txt(atomUses, storePath)
     print("done")
 
 def save_tupleList_txt(data,filename):
@@ -54,9 +57,6 @@ def runOne(name):
     calcAtomUses(coefMatrix,atom2dict,atomUses)
     # 对结果进行排序
     atomUses = sorted(atomUses.items(),key=lambda item:item[1],reverse=True)
-    # 存储结果
-    storePath = "data/"+name+"/atomUses.txt"
-    save_tupleList_txt(atomUses,storePath)
     print("done")
     # res = [atom for atom, rate in atomUses]  # 将误差率下降删除，只返回顺序
     return atomUses
