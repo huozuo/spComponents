@@ -51,7 +51,7 @@ def runOne(name):
     coefMatrix = loadTools.loadCoef(name) #获取稀疏码
     #获得原子和字典的映射
     atom2nodesTool = atom2nodes.Atom2Nodes(name)
-    atom2dict = atom2nodesTool.atom2dict # 原子与字典的映射关系
+    atom2dict = atom2nodesTool.networkInfo.atom2dict # 原子与字典的映射关系
     # 计算每个原子的使用次数
     atomUses = {}
     calcAtomUses(coefMatrix,atom2dict,atomUses)

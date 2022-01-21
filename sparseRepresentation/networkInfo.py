@@ -3,7 +3,7 @@ date:22.01.20
 author:pmy
 description:根据名称获取字典、稀疏码矩阵、采样矩阵、indexs矩阵、字典与原子的映射
 '''
-from ..tools import getFileName
+from ..tools import getFileName,loadTools
 from numpy import *
 import networkx as nx
 import numpy as np
@@ -23,6 +23,7 @@ class NetworkInfo:
         self.name = name
         self.atomNum = self.getAtomNum()
         self.atoms = self.getAtoms()
+        self.sample = loadTools.loadSample(name)
 
 
     def getAtomNum(self):
