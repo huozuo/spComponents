@@ -8,7 +8,6 @@ import networkx as nx
 import numpy as np
 from . import mergeMatrixs
 from ..tools import loadTools
-import tqdm
 
 
 def run(dict,coef,name):
@@ -37,7 +36,7 @@ def genRecMatrix(dict,coef):
 
     recMatrix = np.zeros((np.shape(dict)[0],np.shape(coef)[1])) # 我希望其中都是整型，不是浮点型 TODO
 
-    for j in tqdm.tqdm(range(n)):
+    for j in range(n):
         d = np.reshape(dict[:,j],(np.shape(dict)[0],1))
         c = np.reshape(coef[j,:],(1,np.shape(coef)[1]))
         addMatrix = np.dot(d,c)

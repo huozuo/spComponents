@@ -8,7 +8,7 @@ note: 1. plt.subplot(xyd),x 为行数，y为列数， d为多少个 每个数，
 import matplotlib.pyplot as plt
 import networkx as nx
 from ..tools import getFileName
-from tqdm import tqdm
+
 
 def run(plotArrange=241):
     '''
