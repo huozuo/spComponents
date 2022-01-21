@@ -31,7 +31,7 @@ class NetworkInfo:
         :return:
         '''
         fileList = getFileName.showDir("data/" + self.name + "/")
-        cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexfs')
+        cnt = getFileName.calcFileNums(fileList, 'Atom_\w+.gexf')
         return cnt
 
     def getAtoms(self):
@@ -41,7 +41,7 @@ class NetworkInfo:
         '''
         atoms = []
         for i in range(1,self.atomNum+1):
-            atomName = "data/" + self.name + "/Atom_" + str(i) + ".gexfs"
+            atomName = "data/" + self.name + "/Atom_" + str(i) + ".gexf"
             atoms.append(nx.read_gexf(atomName))
         return atoms
 

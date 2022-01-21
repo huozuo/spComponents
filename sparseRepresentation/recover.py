@@ -20,7 +20,7 @@ def run(dict,coef,name):
     '''
     recMatrix = genRecMatrix(dict,coef)
     G = transformMatrix2gexf(recMatrix,name)
-    gexfPath = "data/"+name+"/"+name+".gexfs"
+    gexfPath = "data/"+name+"/"+name+".gexf"
     nx.write_gexf(G,gexfPath)
 
 

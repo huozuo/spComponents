@@ -19,7 +19,7 @@ class CalcAtomMathc:
     def __init__(self,name,size):
         self.name = name
         self.size = size  # 原子的大小
-        self.G = self.loadNetwork("data/gexfs/"+name+".gexfs")
+        self.G = self.loadNetwork("data/gexfs/"+name+".gexf")
         self.nodes = {}
         self.readAtom2nodes("data/"+name+"/atom2nodes.txt")
 
@@ -68,7 +68,7 @@ class CalcAtomMathc:
         totalCnt = 0
         for atomNum in self.nodes.keys():
             nodes = self.nodes[atomNum]
-            g = self.loadNetwork("data/"+self.name+"/Atom_"+atomNum+".gexfs")
+            g = self.loadNetwork("data/"+self.name+"/Atom_"+atomNum+".gexf")
             for node in nodes:
                 if len(node)<self.size: continue
                 if self.match(node,g): cnt += 1

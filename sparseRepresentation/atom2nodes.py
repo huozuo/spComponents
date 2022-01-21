@@ -26,9 +26,9 @@ class Atom2Nodes():
         # self.coef = self.getMatrix("data/" + name + "/coef_Sample.txt")
         # self.index = self.getIndex(name)
         # self.atom2dict = self.getAtom2dict(name) # {原子序号：字典向量序号}
-        self.name = name
         # self.atomNum = self.getAtomNum()
         # self.atoms = self.getAtoms()
+        self.name = name
         self.curNum = 0
         self.networkInfo = NetworkInfo(name) # 当前name的所有网络信息 抽取出来单独作为一个类
 
