@@ -32,8 +32,10 @@ def expansionCol(M1,MAT,B1,B2,Thres):
     :return: 匹配情况
     '''
     for col in range(M1.shape[1]):
-        if compare(B1,M1[:,col]) < 0.5: continue
-        if compare(B1,MAT[:,col]) > Thres: B2[col] = 1
+        cmp = compare(B1,M1[:,col])
+        if cmp < 0.5: continue
+        elif cmp > Thres or compare(B1,MAT[:,col]) > Thres: B2[col] = 1
+        # elif compare(B1,MAT[:,col]) > Thres: B2[col] = 1
 
 def expansionRow(M1,MAT,B1,B2,Thres):
     '''
@@ -46,5 +48,7 @@ def expansionRow(M1,MAT,B1,B2,Thres):
     :return:
     '''
     for row in range(M1.shape[0]):
-        if compare(B2,M1[row,:]) < 0.5: continue
-        if compare(B2,MAT[row,:]) > Thres: B1[row] = 1
+        cmp = compare(B2,M1[row,:])
+        if cmp < 0.5: continue
+        elif cmp > Thres or compare(B2,MAT[row,:])>Thres: B1[row] = 1
+        # if compare(B2,MAT[row,:]) > Thres: B1[row] = 1
