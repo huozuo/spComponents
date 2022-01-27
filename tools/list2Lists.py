@@ -4,7 +4,7 @@ author: pmy
 func: 将一个list拆分成指定大小的多个list [] -> [[],[]...]
 '''
 
-def list_of_groups(list_info, per_list_len):
+def splitList(list_info, per_list_len):
     '''
     :param list_info:   列表
     :param per_list_len:  每个小列表的长度

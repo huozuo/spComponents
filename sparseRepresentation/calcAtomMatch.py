@@ -37,7 +37,7 @@ class CalcAtomMathc:
             atomNum = int(line1.strip("\n").split(" ")[1])
             nodesStr = line2.strip("\n").split(": ")[1]
             nodes = nodesStr.split(" ")
-            nodes = list_of_groups(nodes,self.size)
+            nodes = splitList(nodes,self.size)
             self.nodes[str(atomNum)] = nodes
 
         f.close()
