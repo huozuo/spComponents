@@ -5,6 +5,7 @@ description: tools for load
 '''
 
 import numpy as np
+import networkx as nx
 
 
 def loadIndexs(name):
@@ -78,3 +79,13 @@ def loadSampleRec(name):
     matrix = np.loadtxt("data/" + name + "/Sample_Recovery.txt")
     matrix = matrix.T  # 进行转置，看需求
     return matrix
+
+
+def loadGexf(name):
+    '''
+    原始网络
+    :param name:
+    :return:
+    '''
+    path = "data/gexfs/"+name+".gexf"
+    return nx.read_gexf(path)
