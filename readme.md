@@ -11,6 +11,7 @@
 - 绘制原子图像（新增）
 - 计算原子匹配率
 - 计算稀疏表征误差
+- 计算网络中边在原子中出现频次
 
 ## 如何使用
 - from spComponents.sparseRepresentation import xxxx    xxx.run()
@@ -127,3 +128,13 @@
     - 输入一个三位数整数 xy1 
     - x 为行数，y为列数， 最后一个数必须为1
     - 每个数，最多不能超过10，超过10，就有歧义，没法识别简写模式
+    
+#### edgeFreq.py
+- aim: 
+  - 计算网络中边在原子中出现频次
+- input: 网络稀疏表征所有结果，包含 原始网络gexf、atom2nodes、、、
+- output: {"u_v":freq} 
+- args: 
+    - name: 网络名称
+    - sampleSize: 网络采样大小
+    
