@@ -31,8 +31,8 @@ def run(name,sampleSize):
         for nodes in nodess:
             for u,v in atom.edges(): # edge is tuple
                 u,v = nodes[int(u)],nodes[int(v)] # 转换成实际节点
-                if u==0 or u==-1 or v==0 or v==-1: continue # 排除实际节点不存在的情况
-                if u > v: u, v = v, u # 使得edgeStr对应edge唯一
+                if u=="0" or u=="-1" or v=="0" or v=="-1": continue # 排除实际节点不存在的情况 其实下面if已经过滤了
+                u,v = (v,u) if u>v else (u,v) # 使得edgeStr对应edge唯一 字典序排序
                 if (u,v) in G.edges():
                     edgeStr = str(u)+"_"+str(v)
                     if edgeStr not in edgeFreq.keys(): edgeFreq[edgeStr] = 0
