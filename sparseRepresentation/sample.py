@@ -107,11 +107,14 @@ def sample(graph_path, name, subnet_size):
     store_filename =  "data/"+ name + "/"
     mkdir(store_filename)
 
-    if '.gexf' in graph_path:
-        G = nx.read_gexf(graph_path)
-        # G = serialize_graph(G)  #直接给注释掉，然后看一看呢 除了进行边预测，平常也不会影响其实
-    else:
-        return
+    G = nx.read_gexf(graph_path)
+    # 保证采样网络是无向图
+    G = nx.to_undirected(G)
+    # if '.gexf' in graph_path:
+    #     G = nx.read_gexf(graph_path)
+    #     # G = serialize_graph(G)  #直接给注释掉，然后看一看呢 除了进行边预测，平常也不会影响其实
+    # else:
+    #     return
 
     Subnet_Size = subnet_size  # 子图大小
 
