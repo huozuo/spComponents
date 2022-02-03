@@ -11,21 +11,22 @@ from ..tools.loadTools import *
 from ..tools.saveTools import *
 
 
-def MBF(matrix,Thres=0.95,DIM=150):
+def MBF(matrix,proNum,Thres=0.95,DIM=150):
     '''
     输入矩阵
     进行布尔矩阵分解
     返回分解得到的字典以及稀疏码
     并且进行误差的评估
     :param matrix: 矩阵
+    :param proNum: 进程数
     :param Thres: expansion的阈值
     :return: 字典矩阵，稀疏码矩阵，并打印误差结果
     '''
-    dict,coef = MEBF(Thres,matrix,DIM=DIM)
+    dict,coef = MEBF(Thres,proNum,matrix,DIM=DIM)
     # error(matrix,dict,coef)
     return dict,coef
 
-def runOne(name,Thres):
+def runOne(name,Thres,proNum):
     '''
     输入name，阈值，运行MBF方法
     存储MBF返回的字典矩阵和稀疏码矩阵
@@ -34,13 +35,13 @@ def runOne(name,Thres):
     :return:
     '''
     matrix = loadSample(name)
-    dict,coef = MBF(matrix,Thres)
+    dict,coef = MBF(matrix,proNum,Thres)
     #存储dict，coef
     save(name,dict,coef)
 
     # print("##########分解完毕##########")
 
-def run(Thres=0.95):
+def run(Thres=0.95,proNum=1000):
     '''
     runAll
     :param filename:
@@ -49,7 +50,7 @@ def run(Thres=0.95):
     for name in showDir("data/"):
         if name =="gexfs":continue
         print("########" + name + "########")
-        runOne(name, Thres)
+        runOne(name, Thres,proNum)
     print("done")
 
 

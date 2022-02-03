@@ -98,9 +98,10 @@ def error(residuMatrix, columnVector,rowVector):
     e = np.sum(e_matrix)
     return e
 
-def MEBF(Thres,MAT,DIM=200,COVER=0.995):
+def MEBF(Thres,proNum,MAT,DIM=200,COVER=0.995):
     '''
     :param Thres:  论文中的t，作为衡量是否能够覆盖的阈值 高了则会覆盖过少，低了则会覆盖过多
+    :param proNum: 进程数
     :param MAT: 输入的矩阵
     :param DIM:  patterns的个数 也是希望得到子矩阵的个数
     :param COVER: 这个我暂时没看懂啥意思
@@ -110,7 +111,7 @@ def MEBF(Thres,MAT,DIM=200,COVER=0.995):
     # cpuCores = int(os.cpu_count()/2)
     # print("start process ",cpuCores)
     # pool = ProcessPoolExecutor(cpuCores)
-    proPool = ProcessPool()
+    proPool = ProcessPool(proNum)
 
     if min(np.shape(MAT))<DIM: #目标patterns的个数一定要小于矩阵的维度，这个显然
         DIM=min(np.shape(MAT))
