@@ -41,7 +41,7 @@ def runOne(name,Thres,proNum):
 
     # print("##########分解完毕##########")
 
-def run(Thres=0.95,proNum=1000):
+def run(Thres=0.95,proNum=None):
     '''
     runAll
     :param filename:
