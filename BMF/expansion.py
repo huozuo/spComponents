@@ -31,10 +31,10 @@ def expansionCol(M1,MAT,B1,B2,Thres):
     :param Thres: 阈值
     :return: 匹配情况
     '''
-    for col in range(M1.shape[1]):
-        cmp = compare(B1,M1[:,col])
+    for j in range(M1.shape[1]):
+        cmp = compare(B1,M1[:,j])
         if cmp < 0.5: continue
-        elif cmp > Thres or compare(B1,MAT[:,col]) > Thres: B2[col] = 1
+        elif cmp > Thres or compare(B1,MAT[:,j]) > Thres: B2[j] = 1
         # elif compare(B1,MAT[:,col]) > Thres: B2[col] = 1
 
 def expansionRow(M1,MAT,B1,B2,Thres):
@@ -47,8 +47,8 @@ def expansionRow(M1,MAT,B1,B2,Thres):
     :param Thres:
     :return:
     '''
-    for row in range(M1.shape[0]):
-        cmp = compare(B2,M1[row,:])
+    for i in range(M1.shape[0]):
+        cmp = compare(B2,M1[i,:])
         if cmp < 0.5: continue
-        elif cmp > Thres or compare(B2,MAT[row,:])>Thres: B1[row] = 1
+        elif cmp > Thres or compare(B2,MAT[i,:])>Thres: B1[i] = 1
         # if compare(B2,MAT[row,:]) > Thres: B1[row] = 1

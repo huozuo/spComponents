@@ -4,8 +4,9 @@ author: pmy
 description: 对矩阵的列向量编码、去重
 '''
 import numpy as np
-from spComponents.tools.dictTools import *
-from spComponents.tools.vecType import VecType
+from ..tools.dictTools import *
+from ..tools.vecType import VecType
+from ..tools.numpyTools import *
 
 class MatrixEncode:
     '''
@@ -23,9 +24,10 @@ class MatrixEncode:
     def unique(self,vecs,vecType):
         '''
         将重复编码的列索引去重
-        :param vecs: 列索引
-        :return:
+        :param vecs: 列索引 并不是列表
+        :return: 列表
         '''
+        vecs = reshapeVec(vecs)
         vec2code = self.col2Code if vecType==VecType.col else self.row2Code
         codeSet = set()
         res = []

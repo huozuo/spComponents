@@ -4,7 +4,7 @@ author: pmy
 function: 运行布尔矩阵分解
 '''
 
-from .MEBF import MEBF
+from .BMF import BMF
 from ..tools.getFileName import showDir
 from ..tools.errorTools import *
 from ..tools.loadTools import *
@@ -22,7 +22,7 @@ def MBF(matrix,proNum,Thres=0.95,DIM=150):
     :param Thres: expansion的阈值
     :return: 字典矩阵，稀疏码矩阵，并打印误差结果
     '''
-    dict,coef = MEBF(Thres,proNum,matrix,DIM=DIM)
+    dict,coef = BMF(Thres,proNum,matrix,DIM=DIM)
     # error(matrix,dict,coef)
     return dict,coef
 
@@ -61,7 +61,7 @@ if __name__=="__main__":
     #      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, ],
     #      [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, ], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1],
     #      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0]])
-    # MBF(matrix,0.85)
+    # BMF(matrix,0.85)
     # name = "ca-AstroPh2"
     # print(name)
     # run(name,0.92)
