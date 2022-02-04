@@ -8,13 +8,8 @@ version:v1
 location: spComponents
 '''
 from .expansion import *
-from enum import Enum
 from ..tools.processPool import ProcessPool
-
-# 向量类型 枚举类型 外置
-class VecType(Enum):
-    row = 0
-    col = 1
+from ..tools.vecType import VecType
 
 
 def findMinErr(data):
