@@ -11,7 +11,7 @@ from ..tools.loadTools import *
 from ..tools.saveTools import *
 
 
-def MBF(matrix,proNum,Thres=0.95,DIM=150):
+def BMF(matrix,proNum,Thres=0.95,DIM=150):
     '''
     输入矩阵
     进行布尔矩阵分解
@@ -35,7 +35,7 @@ def runOne(name,Thres,proNum):
     :return:
     '''
     matrix = loadSample(name)
-    dict,coef = MBF(matrix,proNum,Thres)
+    dict,coef = BMF(matrix,proNum,Thres)
     #存储dict，coef
     save(name,dict,coef)
 
