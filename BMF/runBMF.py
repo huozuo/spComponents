@@ -11,7 +11,7 @@ from ..tools.loadTools import *
 from ..tools.saveTools import *
 
 
-def BMF(matrix,proNum,Thres=0.95,DIM=150):
+def factorization(matrix,proNum,Thres=0.95,DIM=150):
     '''
     输入矩阵
     进行布尔矩阵分解
@@ -35,13 +35,13 @@ def runOne(name,Thres,proNum):
     :return:
     '''
     matrix = loadSample(name)
-    dict,coef = BMF(matrix,proNum,Thres)
+    dict,coef = factorization(matrix=matrix,proNum=proNum,Thres=Thres)
     #存储dict，coef
     save(name,dict,coef)
 
     # print("##########分解完毕##########")
 
-def run(Thres=0.95,proNum=None):
+def run(Thres=0.95,proNum=6):
     '''
     runAll
     :param filename:
