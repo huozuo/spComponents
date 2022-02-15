@@ -114,19 +114,23 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
     if min(np.shape(MAT))<DIM: #目标patterns的个数要小于矩阵的维度
         DIM=min(np.shape(MAT))
 
+    m,n = np.shape(MAT)
+
     M1 = MAT #M1残差矩阵
     SUM = np.sum(MAT) #原矩阵的1的个数
-    MAT_B = np.empty([np.shape(MAT)[0],0]) #字典矩阵D
-    MAT_C = np.empty([0, np.shape(MAT)[1]]) #稀疏码矩阵
+    # MAT_B = np.empty([np.shape(MAT)[0],0]) #字典矩阵D
+    MAT_B = np.empty([m,0]) #字典矩阵D
+    MAT_C = np.empty([0, n]) #稀疏码矩阵
+    # MAT_C = np.empty([0, np.shape(MAT)[1]]) #稀疏码矩阵
 
     # 循环条件：字典列向量数达到DIM，或者1的个数足够少（剩余1的个数达到（1-cover）*初始1的个数）
     while np.sum(M1)>(1-COVER)*SUM and min(MAT_B.shape)<DIM:#COVER值只在这里出现
         matrixCode = MatrixEncode(M1) # 矩阵编码
 
         e= np.sum(M1) # 本轮矩阵的1个数
-        B1 = np.zeros(np.shape(M1)[0]) #对于MAT_B的列向量 初始化 全0
+        B1 = np.zeros(m) #对于MAT_B的列向量 初始化 全0
         B1_use = B1
-        B2 = np.zeros(np.shape(M1)[1]) #对于MAT_C的行向量 初始化 全0
+        B2 = np.zeros(n) #对于MAT_C的行向量 初始化 全0
         B2_use = B2
 
         COL = np.sum(M1, axis=0) #列和 是一个向量
@@ -140,11 +144,13 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
             mCol = min(COL[COL>=medianCol]) # 找到最接近中位数的数的列和
             TEMP=np.argwhere(COL==mCol) #返回满足条件的索引 是个二维数组，第二维对于向量是一个元素
             TEMP = matrixCode.unique(TEMP,VecType.col) # 去重
-            e2,B1,B2 = findMaxRect(MAT,M1,Thres,proPool,TEMP,VecType.col)
-            if e1 > e2:
-                B1_use = B1
-                B2_use = B2
-                e1 = e2
+            # 当前 中位列数过多，导致时间复杂度过高，则跳过
+            if len(TEMP) < 500:
+                e2,B1,B2 = findMaxRect(MAT,M1,Thres,proPool,TEMP,VecType.col)
+                if e1 > e2:
+                    B1_use = B1
+                    B2_use = B2
+                    e1 = e2
 
         ### start with row
         medianRow = np.median(ROW[ROW>0])
@@ -152,18 +158,19 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
             mRow = min(ROW[ROW >= medianRow])
             TEMP = np.argwhere(ROW==mRow)
             TEMP = matrixCode.unique(TEMP, VecType.row) # 去重
-            e2,B1,B2 = findMaxRect(MAT, M1, Thres, proPool, TEMP, VecType.row)
-            if e1 > e2:
-                B1_use = B1
-                B2_use = B2
-                e1 = e2
+            if len(TEMP)<500:
+                e2,B1,B2 = findMaxRect(MAT, M1, Thres, proPool, TEMP, VecType.row)
+                if e1 > e2:
+                    B1_use = B1
+                    B2_use = B2
+                    e1 = e2
 
         #weak signal detection algorithm 在中位数行列expansion失效时执行
         if((e-e1)/e<0.01):
             COL_order=np.argsort(COL)[::-1] #返回 按照sum和最大来排序的索引
             ROW_order=np.argsort(ROW)[::-1]
-            B1 = np.zeros(np.shape(M1)[0])
-            B2 = np.zeros(np.shape(M1)[1])
+            B1 = np.zeros(m)
+            B2 = np.zeros(n)
 
             ### start from COL
             B1[(M1[:,COL_order[0]]+M1[:,COL_order[1]]==2)]=1 #把1最稠密的两列给叠加起来，然后来构成新的pattern
@@ -175,8 +182,8 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
                 e1 = e2
 
             ### start from ROW
-            B1 = np.zeros(np.shape(M1)[0])
-            B2 = np.zeros(np.shape(M1)[1])
+            B1 = np.zeros(m)
+            B2 = np.zeros(n)
             B2[(M1[ROW_order[0],] + M1[ROW_order[1],] == 2)] = 1
             expansionRow(M1, MAT, B1, B2, Thres)
             e2 = error(M1,B1,B2)
