@@ -71,7 +71,7 @@ def Atom_Gen(base_name, name,sep = ""):
             nx.write_gexf(Sample, base_name + "/Atom_" + str(Num_Sample) + ".gexf", encoding='utf-8')
             Num_Sample = Num_Sample + 1
 
-    print('Number of Atom: ', len(Sample_Set))
+    print('Number of Atom:', len(Sample_Set))
     Atoms_Num = len(Sample_Set)
 
     # =============================Recover_Sample========================================================================#
@@ -123,8 +123,8 @@ def Atom_Gen(base_name, name,sep = ""):
 
     Dict = matrix(Dict)
     Delta = matrix(Delta)
-    print('Dimonsion of Dict: ', Dict.shape)
-    print('Dimonsion of Coe: ', Delta.shape)
+    print('Dimonsion of Dict:', Dict.shape)
+    print('Dimonsion of Coef:', Delta.shape)
 
     Rec_G = Dict * Delta
 
@@ -141,13 +141,13 @@ def Atom_Gen(base_name, name,sep = ""):
             else:
                 Rec_GT[k].append(0)
         k = k + 1
-    print('Number of Recover Networks: ', len(Rec_GT))
+    print('Number of Recover Networks:', len(Rec_GT))
     print('Number of Sample Networks', len(Network_Set))
     k = 0
     for line in Rec_GT:
         if line in Network_Set:
             k = k + 1
-    print('Number of Coverage：', k)
+    print('Number of Coverage:', k)
 
     f = open(base_name + "/Sample_Recovery.txt", 'w')
     for line in Rec_GT:

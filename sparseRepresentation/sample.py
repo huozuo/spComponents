@@ -194,5 +194,5 @@ if __name__ == '__main__':
         print(name)
         sample(filename, name, 20)
         count += 1
-        print("进度完成{}/{}".format(str(count),str(len(file_list))))
+        print("process{}/{}".format(str(count),str(len(file_list))))
 
