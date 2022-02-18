@@ -34,8 +34,8 @@ class CalcAtomMathc:
             line1 = f.readline()
             line2 = f.readline()
             if not line2: break
-            atomNum = int(line1.strip("\n").split(" ")[1])
-            nodesStr = line2.strip("\n").split(": ")[1]
+            atomNum = int(line1.strip("\n").split(":")[1])
+            nodesStr = line2.strip("\n").split(":")[1]
             nodes = nodesStr.split(" ")
             nodes = splitList(nodes,self.size)
             self.nodes[str(atomNum)] = nodes

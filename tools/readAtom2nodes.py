@@ -20,8 +20,8 @@ def readAtom2nodes(name,sampleSize):
     path = "data/"+name+"/atom2nodes.txt"
     f = open(path,"r",encoding="UTF-8")
     for line1,line2 in itertools.zip_longest(*[f]*2):
-        id = int(line1.strip("\n").split(" ")[1])
-        nodes = line2.strip("\n").strip(" ").split(" ")[1:]
+        id = int(line1.strip("\n").split(":")[1])
+        nodes = line2.strip("\n").strip(":").split(" ")[1:]
         nodes = list2Lists.splitList(nodes,sampleSize)
         res[id] = nodes
     f.close()

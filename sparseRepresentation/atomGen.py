@@ -208,7 +208,7 @@ def Atom_Gen(base_name, name,sep = ""):
     f.write(str(Edge_Num))  # 每个原子的边数
     f.write('\n')
     f.write(str(Average_Deg))  # 每个原子的平均度 由边数*2/节点数
-    print("平均度：",sum(Average_Deg)/len(Average_Deg))
+    print("average deg",sum(Average_Deg)/len(Average_Deg))
     f.close()
 
 
