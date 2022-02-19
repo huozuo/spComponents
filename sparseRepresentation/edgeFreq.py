@@ -14,7 +14,17 @@ from spComponents.sparseRepresentation.networkInfo import NetworkInfo
 from spComponents.tools import loadTools
 
 
-def run(name,sampleSize):
+def run(name):
+    '''
+    统计 原始网络中，每条边在所有原子的出现的频次
+    :param name: 网络名称
+    :return: {"u_v":freq}
+    '''
+    networkInfo = NetworkInfo(name)
+    return edgeFreq(name,networkInfo)
+
+
+def edgeFreq(name,networkInfo):
     '''
     统计 原始网络中，每条边在所有原子的出现的频次
     :param name: 网络名称
@@ -23,8 +33,7 @@ def run(name,sampleSize):
     '''
     edgeFreq = {}
     G = loadTools.loadGexf(name)
-    networkInfo = NetworkInfo(name)
-    atom2nodes = readAtom2nodes(name,sampleSize)
+    atom2nodes = readAtom2nodes(name,networkInfo.sampleSize)
     for atomId in atom2nodes.keys():
         nodess = atom2nodes[atomId]
         atom = networkInfo.atoms[atomId-1] # atomId从1开始，atoms是列表
@@ -39,8 +48,6 @@ def run(name,sampleSize):
                     edgeFreq[edgeStr] += 1
 
     return edgeFreq
-
-
 
 
 
