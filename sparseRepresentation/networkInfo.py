@@ -24,6 +24,7 @@ class NetworkInfo:
         self.atomNum = self.getAtomNum()
         self.atoms = self.getAtoms()
         self.sample = loadTools.loadSample(name)
+        self.sampleSize = loadTools.getSampleSize(self.sample)
 
 
     def getAtomNum(self):

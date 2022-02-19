@@ -89,3 +89,14 @@ def loadGexf(name):
     '''
     path = "data/gexfs/"+name+".gexf"
     return nx.read_gexf(path)
+
+
+def getSampleSize(sampleMatrix):
+    '''
+    获取采样大小
+    :param sampleMatrix:
+    :return:
+    '''
+    m,n = np.shape(sampleMatrix)
+    sampleSize = int(np.sqrt(min(m,n)))
+    return sampleSize
