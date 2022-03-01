@@ -96,12 +96,13 @@ def Creat_Random_Picture(Name):
     return G
 
 
-def sample(graph_path, name, subnet_size):
+def sample(graph_path, name, subnet_size,SON):
     """
     采样
     :param graph_path: 图路径
     :param name: 生成文件的名字标记
     :param subnet_size: 原子最大大小
+    :param SON: second order nei 二阶邻居
     :return:
     """
     store_filename =  "data/"+ name + "/"
@@ -129,9 +130,10 @@ def sample(graph_path, name, subnet_size):
 
         G_neighbor = list(G.neighbors(i))
         Nei_i = [i] + G_neighbor  # 包含自身的list
-        # if len(Nei_i) < Subnet_Size:  # 如果邻居数不够subnet_size, 添加二级邻居 注释掉啦，暂时弃用
-        #     for nei in G.neighbors(i):
-        #         Nei_i = Nei_i + list(G.neighbors(nei))
+        if SON:
+            if len(Nei_i) < Subnet_Size:  # 如果邻居数不够subnet_size, 添加二级邻居 注释掉啦，暂时弃用
+                for nei in G.neighbors(i):
+                    Nei_i = Nei_i + list(G.neighbors(nei))
 
         Nei_i = Nei_i[:subnet_size]# 提前进行截断，反着之前也只是用的前20个
         ## 插入transfromNetwork进行排序
@@ -164,7 +166,7 @@ def sample(graph_path, name, subnet_size):
     f2.close()
     print("行数",ks)
 
-def run(size=20):
+def run(size=20,SON=False):
     '''
     采样data/gexfs/ 目录下所有
     :param size: 采样网络大小
@@ -178,7 +180,7 @@ def run(size=20):
         name = filename.strip(".txt").strip(".gexf")
         filename = base_filename + filename
         print(name)
-        sample(filename, name, size)
+        sample(filename, name, size,SON)
         count += 1
         print("process{}/{}".format(str(count), str(len(file_list))))
 

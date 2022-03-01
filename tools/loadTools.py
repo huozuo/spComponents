@@ -83,7 +83,7 @@ def loadSampleRec(name):
 
 def loadGexf(name):
     '''
-    原始网络
+    gexfs
     :param name:
     :return:
     '''
