@@ -23,8 +23,11 @@ class NetworkInfo:
         self.name = name
         self.atomNum = self.getAtomNum()
         self.atoms = self.getAtoms()
-        self.sample = loadTools.loadSample(name)
-        self.sampleSize = loadTools.getSampleSize(self.sample)
+        try:
+            self.sample = loadTools.loadSample(name)
+            self.sampleSize = loadTools.getSampleSize(self.sample)
+        except:
+            pass
 
 
     def getAtomNum(self):
@@ -54,7 +57,11 @@ class NetworkInfo:
             return None
 
     def getMatrix(self,filename):
-        return np.loadtxt(filename)
+        try:
+            res = np.loadtxt(filename)
+        except:
+            res = None
+        return res
 
     def getIndex(self,name):
         '''
