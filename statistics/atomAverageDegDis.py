@@ -5,14 +5,9 @@ description: 原子平均度分布数据输出
 '''
 from spComponents.sparseRepresentation import networkInfo
 from spComponents.tools import getFileName
-import networkx as nx
 import os
 import pandas as pd
-
-class Atoms:
-    def __init__(self,gInfo):
-        self.atoms = gInfo.atoms
-        self.num = gInfo.atomNum
+from spComponents.statistics.atom import *
 
 
 
