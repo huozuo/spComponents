@@ -133,6 +133,8 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
         B2 = np.zeros(n) #对于MAT_C的行向量 初始化 全0
         B2_use = B2
 
+        print(e)
+
         COL = np.sum(M1, axis=0) #列和 是一个向量
         ROW = np.sum(M1, axis=1) #行和 也是一个向量
 
@@ -193,7 +195,7 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
                 e1 = e2
 
         # 如果处理之后还等于0， 则直接brek
-        if e1==np.sum(M1):
+        if ((e-e1)/e<0.01):
             # print("无法误差下降啦")
             break
         else:#确实更新了，所以这里进行修正矩阵

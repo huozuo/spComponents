@@ -10,7 +10,7 @@ import networkx as nx
 from ..tools import getFileName
 
 
-def run(plotArrange=241):
+def run(plotArrange=241,nodeLabel=True,edgeLabel=True):
     '''
     画所有图，只调用一次就好了
     :param plotArrange:
@@ -20,12 +20,12 @@ def run(plotArrange=241):
     files = getFileName.showDir(basePath)
     for file in files:
         try:
-            runOne(file,plotArrange)
+            runOne(file,plotArrange,nodeLabel,edgeLabel)
         except:
             print(file+"plot failed")
 
 
-def runOne(name,plotArrange):
+def runOne(name,plotArrange,nodeLabel=True,edgeLabel=True):
     '''
     主方法
     :param name:
@@ -47,7 +47,7 @@ def runOne(name,plotArrange):
     # 挨个的画图
     for i in range(len(atoms)):
         seq = i%total
-        plotAtom(atoms[i],plotArrange+seq)
+        plotAtom(atoms[i],plotArrange+seq,nodeLabel,edgeLabel)
         if seq == total-1 or i==len(atoms)-1:
             f = plt.gcf()
             f.set_size_inches(18, 10) # 图像的尺寸
@@ -56,19 +56,23 @@ def runOne(name,plotArrange):
     # print("=====plot done=====")
 
 
-def plotAtom(atom,id):
+def plotAtom(atom,id,nodeLabel=True,edgeLabel=True):
     '''
     绘制单个原子
     :param atom: networkx gexfs
+    :param nodeLabel: 控制绘制节点标签
+    :param edgeLabel: 控制绘制边标签
     :return:
     '''
     plt.subplot(id)
     pos = nx.spring_layout(atom)
-    nx.draw(atom,pos)
-    node_labels = nx.get_node_attributes(atom, 'label')
-    nx.draw_networkx_labels(atom, pos, labels=node_labels)
-    edge_labels = nx.get_edge_attributes(atom, 'label')
-    nx.draw_networkx_edge_labels(atom, pos, edge_labels=edge_labels)
+    nx.draw(atom,pos,node_size=4000,edge_cmap=plt.cm.Blues)
+    if nodeLabel:
+        node_labels = nx.get_node_attributes(atom, 'label')
+        nx.draw_networkx_labels(atom, pos, labels=node_labels)
+    if edgeLabel:
+        edge_labels = nx.get_edge_attributes(atom, 'label')
+        nx.draw_networkx_edge_labels(atom, pos, edge_labels=edge_labels,font_size=50)
 
 
 def readAtoms(paths):
