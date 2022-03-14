@@ -123,7 +123,7 @@ def sample(graph_path, name, subnet_size,SON):
     f = open(store_filename + "/Sample_{}.txt".format(name), 'w',encoding='utf-8')  # 每一行都是邻接矩阵（egonetwork）
     f2 = open(store_filename + "/Index_{}.txt".format(name), 'w')  # 每一行都是该节点的邻接节点
 
-    print("num of nodes：",G.number_of_nodes()) #for test
+    print("num of nodes:",G.number_of_nodes()) #for test
 
     for i in G.nodes():
         ks = ks + 1
@@ -164,7 +164,7 @@ def sample(graph_path, name, subnet_size,SON):
     # print('Number of Atoms: ', ks)  # 多少个点，多少个ego-network  这里是多写了一个，matlab跑的时候要-1
     f.close()
     f2.close()
-    print("行数",ks)
+    # print("行数",ks)
 
 def run(size=20,SON=False):
     '''
