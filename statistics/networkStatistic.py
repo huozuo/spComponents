@@ -37,7 +37,7 @@ def intersection(G1,G2):
                 cnt += 1
     return cnt
 
-def precision(name):
+def accurate(name):
     '''
     准确率
     预测准确的正样本/预测出的正样本 = 正确的交集/恢复网络的边数
