@@ -11,7 +11,7 @@ from ..tools.loadTools import *
 from ..tools.saveTools import *
 
 
-def factorization(matrix,proNum,Thres=0.95,DIM=150):
+def factorization(matrix,proNum,Thres=0.95,DIM=150,breakThres=0.01):
     '''
     输入矩阵
     进行布尔矩阵分解
@@ -22,7 +22,7 @@ def factorization(matrix,proNum,Thres=0.95,DIM=150):
     :param Thres: expansion的阈值
     :return: 字典矩阵，稀疏码矩阵，并打印误差结果
     '''
-    dict,coef = BMF(Thres,proNum,matrix,DIM=DIM)
+    dict,coef = BMF(Thres,proNum,matrix,DIM=DIM,breakThres=breakThres)
     # error(matrix,dict,coef)
     return dict,coef
 

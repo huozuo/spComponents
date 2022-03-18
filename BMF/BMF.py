@@ -99,7 +99,7 @@ def error(residuMatrix, columnVector,rowVector):
     e = np.sum(e_matrix)
     return e
 
-def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
+def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995,breakThres=0.01):
     '''
     :param Thres:  向量相似的阈值
     :param proNum: 进程数
@@ -133,7 +133,7 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
         B2 = np.zeros(n) #对于MAT_C的行向量 初始化 全0
         B2_use = B2
 
-        print(e)
+        # print(e)
 
         COL = np.sum(M1, axis=0) #列和 是一个向量
         ROW = np.sum(M1, axis=1) #行和 也是一个向量
@@ -168,7 +168,7 @@ def BMF(Thres,proNum,MAT,DIM=200,COVER=0.995):
                     e1 = e2
 
         #weak signal detection algorithm 在中位数行列expansion失效时执行
-        if((e-e1)/e<0.01):
+        if((e-e1)/e<breakThres):
             COL_order=np.argsort(COL)[::-1] #返回 按照sum和最大来排序的索引
             ROW_order=np.argsort(ROW)[::-1]
             B1 = np.zeros(m)

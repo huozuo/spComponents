@@ -69,7 +69,7 @@ def runOne(name):
     :return:
     '''
     print("####"+name+"####")
-    print("precision: ",precision(name))
+    print("accurate: ",accurate(name))
     print("recall: ",recall(name))
     print(" ")
 
