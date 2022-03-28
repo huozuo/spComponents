@@ -18,8 +18,9 @@ def run(dict,coef,name):
     :param name:
     :return:
     '''
+    indexs = loadTools.loadIndexs(name)
     recMatrix = genRecMatrix(dict,coef)
-    G = transformMatrix2gexf(recMatrix,name)
+    G = transformMatrix2gexf(recMatrix,indexs)
     gexfPath = "data/"+name+"/"+name+".gexf"
     nx.write_gexf(G,gexfPath)
 
@@ -45,14 +46,14 @@ def genRecMatrix(dict,coef):
     return recMatrix
 
 
-def transformMatrix2gexf(recMatrix,name):
+def transformMatrix2gexf(recMatrix,indexs):
     '''
     transform recMatrix to gexfs
     :param recMatrix: 恢复采样矩阵
     :param name: 网络名称
     :return:
     '''
-    indexs = loadTools.loadIndexs(name)
+    # indexs = loadTools.loadIndexs(name)
     G = nx.Graph()
     m,n = np.shape(recMatrix)
     sampleSize = len(indexs[0])
