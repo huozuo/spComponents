@@ -65,14 +65,20 @@ def plotAtom(atom,id,nodeLabel=True,edgeLabel=True):
     :return:
     '''
     plt.subplot(id)
-    pos = nx.spring_layout(atom)
-    nx.draw(atom,pos,node_size=4000,edge_cmap=plt.cm.Blues)
+    # pos = nx.spring_layout(atom)
+    pos = nx.kamada_kawai_layout(atom)
+    plt.rcParams['figure.figsize']=(10,6)
+    nx.draw(atom,pos,node_size=2000,edge_cmap=plt.cm.Blues)
+    # nx.draw(atom,pos,node_size=12000,edge_cmap=plt.cm.Blues)
     if nodeLabel:
         node_labels = nx.get_node_attributes(atom, 'label')
-        nx.draw_networkx_labels(atom, pos, labels=node_labels)
+        nx.draw_networkx_labels(atom, pos, labels=node_labels,font_color='w')
+        # nx.draw_networkx_labels(atom, pos, labels=node_labels,font_size=80,font_color='w')
     if edgeLabel:
         edge_labels = nx.get_edge_attributes(atom, 'label')
-        nx.draw_networkx_edge_labels(atom, pos, edge_labels=edge_labels,font_size=50)
+        nx.draw_networkx_edge_labels(atom, pos, edge_labels=edge_labels)
+        # nx.draw_networkx_edge_labels(atom, pos, edge_labels=edge_labels,font_size=50)
+    plt.tight_layout(pad=0)
 
 
 def readAtoms(paths):
@@ -108,7 +114,7 @@ def plotNetworks(atoms,plotArrange=241):
         if seq == total-1 or i==len(atoms)-1:
             f = plt.gcf()
             f.set_size_inches(18, 10) # 图像的尺寸
-            plt.savefig("data/"+"Fig_"+str(int(i//total))+".png",dpi=100)
+            plt.savefig("data/"+"Fig_"+str(int(i//total))+".png",dpi=400,bbox_inches='tight', pad_inches=0.01)
             plt.close()
     print("=====plot done=====")
 

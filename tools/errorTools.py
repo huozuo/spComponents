@@ -66,7 +66,7 @@ def absError(sampleMatrix,dict,coef):
     # 用于浮点数矩阵的情况
     reconstruction_matrix[reconstruction_matrix >= 0.5] = 1
     reconstruction_matrix[reconstruction_matrix < 0.5] = 0
-    # reconstruction_matrix[reconstruction_matrix > 1] = 1 # 布尔矩阵，包括知识图谱的情况
+    # reconstruction_matrix[reconstruction_matrix > 1] = 1 # boolean，包括知识图谱的情况
     # print("初始能量为：",originalEng)
     error_matrix = sampleMatrix - reconstruction_matrix
     error_matrix[error_matrix != 0] = 1
