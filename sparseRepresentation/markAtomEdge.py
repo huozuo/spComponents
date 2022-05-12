@@ -40,7 +40,7 @@ def run(name,atoms):
     recG = recover.transformMatrix2gexf(recMatrix,ni.index)
 
     G = nx.read_gexf("data/gexfs/"+name+".gexf")
-    cnt = 0
+    cnt = 0 # 边数
     for u,v in recG.edges():
         u,v = str(u),str(v)
         if (u,v) in G.edges():

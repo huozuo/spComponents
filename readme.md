@@ -25,6 +25,17 @@
                                                        绘制原子图像
 - 所有的非工具py，都可以直接 xxx.run(args) 运行
 - 请在main py 同级目录下创建 /data/gexfs 路径，将gexf网络（networkx常用格式）放入
+- ksvd_matlab
+    - 该文件为ksvd的matlab版本,使用方法如下
+    - 本步骤只是代替矩阵分解操作
+    ```text
+    下载ksvd-matlab,打开matlab进入Compressed_sensing/
+    将ompbox与Ron Rubingstein右键 添加到路径-文件夹与子文件
+    然后将采样后的sample文件拷贝到当前目录下,打开run.m
+    修改原子个数,原子大小,训练样本路径
+    运行后,会产生dic_Sample.txt与coef_Sample.txt
+    拷贝出去,可以继续使用python代码执行原子生成等后序操作
+    ```
 
 ## attention
 - 使用pycharm时，建议将spComponents的父节点 make directory as source root，否则会出现 no module named xxx

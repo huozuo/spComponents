@@ -97,7 +97,7 @@ def error(sampleMatrix,dict,coef):
     originalEng = calcSum(sampleMatrix)
     print("original eng: " + str(originalEng))
     reconstruction_matrix = np.dot(dict, coef)
-    # reconstruction_matrix[reconstruction_matrix > 1] = 1
+    reconstruction_matrix[reconstruction_matrix > 1] = 1
     error_matrix = sampleMatrix - reconstruction_matrix
     error_matrix[error_matrix != 0] = 1
     errorEng = calcSum(error_matrix)
